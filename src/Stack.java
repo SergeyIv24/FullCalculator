@@ -13,6 +13,10 @@ public class Stack <T> {
         return stack;
     }
 
+    public int getStackIterator() {
+        return stackIterator;
+    }
+
     public void push(T item) {
         stack.add(item);
         stackIterator++;
@@ -21,6 +25,7 @@ public class Stack <T> {
     public T pop() {
         if (stackIterator < 0) return null;
         T stackElem = stack.get(stackIterator);
+        stack.remove(stackElem);
         --stackIterator;
         return stackElem;
     }

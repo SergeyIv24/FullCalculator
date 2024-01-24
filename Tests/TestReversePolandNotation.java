@@ -7,6 +7,7 @@ public class TestReversePolandNotation {
     OrdinaryCalculator test2;
     OrdinaryCalculator test3;
     OrdinaryCalculator test4;
+    OrdinaryCalculator test5;
 
     @BeforeEach
     public void createCalculator() {

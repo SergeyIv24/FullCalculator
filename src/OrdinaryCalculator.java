@@ -41,22 +41,44 @@ public class OrdinaryCalculator implements Calculator {
             stack.push(symbol);
             return;
         }
-        for (Character sym : stack.getStack()) {
+/*        for (Character sym : stack.getStack()) {
             if ((sym == symbol) && ((symbol != ')') && (symbol != '('))) {
-                output = output + symbol;
+                output = output + stack.pop();
+                stack.push(symbol);
+                return;
+            }
+        }*/
+
+        if ((symbol != ')') && (symbol != '(') && (!stack.getStack().contains('('))) {
+            char sym = stack.pop();
+            if ((sym != ')') && (sym != '(')) {
+                output = output + sym;
+            }
+            stack.push(symbol);
+            return;
+        }
+
+
+
+        if (stack.getStackIterator() != -1) {
+            if ((symbol == ')') && (stack.getStack().contains('('))) {
+                for (int i = 0; i < stack.getStack().size(); i++) {
+                    char sym = stack.pop();
+                    if ((sym != ')') && (sym != '(')) {
+                        output = output + sym;
+                    }
+                }
+                if (!stack.getStack().isEmpty()) {
+                    char sym = stack.pop();
+                    if ((sym != ')') && (sym != '(')) {
+                        output = output + sym;
+                    }
+                }
                 return;
             }
         }
-        if ((symbol == ')') && (stack.getStack().contains('('))) {
-            for (int i = 0; i < stack.getStack().size(); i++) {
-                char sym = stack.pop();
-                if ((sym != ')') && (sym != '(')) {
-                    output = output + sym;
-                }
-            }
-            stack.clean();
-            return;
-        }
+
+
         stack.push(symbol);
     }
 
@@ -64,40 +86,21 @@ public class OrdinaryCalculator implements Calculator {
 
 
 
-/*    public void checkStack() {
-        if (stack.getStack().contains('(') && stack.getStack().contains(')')) {
-            for (int i = 0; i < stack.getStack().size(); i++) {
-                char symbol = stack.pop();
-                if ((symbol != ')') && (symbol != '(')) {
-                    output = output + symbol;
-                }
-            }
-            stack.clean();
-        }*/
-/*        if (stack.getStack().size() > 1) {
-            if ((stack.getStack().get(0) != null) && (stack.getStack().get(1) != null)) {
-                if (stack.getStack().get(0) == stack.getStack().get(1)) {
-                    output = output + stack.pop();
-                }
-            }
-        }*/
+
 
 
 
 
 
 }
-/*
-else if (stack.getStack().get(0) == stack.getStack().get(1)) {
-        output = output + stack.pop();
-        }*/
+
 
 
 /*
-        if (stack.getStack().size() > 1) {
-                if ((stack.getStack().get(0) != null) && (stack.getStack().get(1) != null)) {
-                if (stack.getStack().get(0) == stack.getStack().get(1)) {
+        for (Character sym : stack.getStack()) {
+                if ((sym == symbol) && ((symbol != ')') && (symbol != '('))) {
                 output = output + stack.pop();
-                }
+                stack.push(symbol);
+                return;
                 }
                 }*/
