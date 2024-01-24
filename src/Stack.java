@@ -25,7 +25,7 @@ public class Stack <T> {
     public T pop() {
         if (stackIterator < 0) return null;
         T stackElem = stack.get(stackIterator);
-        stack.remove(stackElem);
+        stack.remove(stackIterator);
         --stackIterator;
         return stackElem;
     }
