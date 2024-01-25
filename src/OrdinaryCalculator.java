@@ -59,11 +59,9 @@ public class OrdinaryCalculator implements Calculator {
             return;
         }
 
-
-
         if ((symbol != ')') && (symbol != '(')) {
             int weightOfSymbol = mathSymbolPriority.get(symbol);
-            int indexSym = stack.getStackIterator();
+            int indexSym = stack.getStackIterator(); //Индекс вершины стека
             char symb = stack.getStack().get(indexSym);
             int weightOfStack = mathSymbolPriority.get(symb);
 
@@ -79,31 +77,19 @@ public class OrdinaryCalculator implements Calculator {
                 return;
             }
         }
+
         if (stack.getStackIterator() != -1) {
             if ((symbol == ')') && (stack.getStack().contains('('))) {
-                for (int i = 0; i < stack.getStack().size(); i++) {
-
-
-                    char sym = stack.pop(); //todo толкать пока не дойдет до (
-                    if ((sym != ')') && (sym != '(')) {
+                for (int i = stack.getStackIterator(); i >= -1; i--) {
+                    if (stack.getStack().get(stack.getStackIterator()) != '(') {
+                        char sym = stack.pop();
                         output = output + sym;
+                    } else {
+                        stack.pop();
+                        return;
                     }
                 }
-                if (!stack.getStack().isEmpty()) {
-                    char sym = stack.pop();
-                    if ((sym != ')') && (sym != '(')) {
-                        output = output + sym;
-                    }
-                }
-                return;
-            }
-        }
 
-        if ((symbol == ')') && (!stack.getStack().contains('('))) {
-            char sym = stack.pop();
-            if ((sym != ')') && (sym != '(')) {
-                output = output + sym;
-                return;
             }
         }
         stack.push(symbol);
