@@ -21,32 +21,39 @@ public class OrdinaryCalculator implements Calculator {
         stack = new Stack<>();
     }
 
-    public String makeInvertPolandNotation() {
+    public int makeNum(char[] exp, int startIndex) {
+        int indexContinue = 0;
+        for (int i = startIndex; i < exp.length; i++) {
+            if (Character.isDigit(exp[i])) {
+                output += exp[i];
+                indexContinue = i;
+            } else {
+                return indexContinue;
+            }
+        }
+        return indexContinue;
+    }
 
+    public String makeInvertPolandNotation() {
         char[] arrExpression = expression.toCharArray();
         for (int i = 0; i < arrExpression.length; i++) {
-            boolean isThereMathSymbol = false;
-            for (int j = 0; j < mathSymbols.length; j++) {
-                if (arrExpression[i] == mathSymbols[j]) {
-                    isThereMathSymbol = true;
-                    addToStack(mathSymbols[j]);
-                    break;
-                }
-            }
-            if (!isThereMathSymbol) {
-                output = output + arrExpression[i];
-            }
+            if (Character.isDigit(arrExpression[i])) {
+                i = makeNum(arrExpression, i);
 
+            } else {
+                output += " ";
+                addToStack(arrExpression[i]);
+            }
         }
         while (!stack.getStack().isEmpty()) {
             char sym = stack.pop();
             if ((sym != ')') && (sym != '(')) {
-                output = output + sym;
+                output = output + ' ' + sym;
             }
 
         }
 
-        return output;
+        return output.trim().replaceAll("  ", " ");
 
     }
 
