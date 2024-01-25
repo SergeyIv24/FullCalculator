@@ -15,10 +15,10 @@ public class OrdinaryCalculator implements Calculator {
     public OrdinaryCalculator(String expression) {
         this.expression = expression;
         mathSymbols  = new char[]{'(', ')', '+', '-', '*', '/'};
-        mathSymbolPriority.put(')', 0);
-        mathSymbolPriority.put('(', 0);
-        mathSymbolPriority.put('+', 1);
-        mathSymbolPriority.put('-', 1);
+        mathSymbolPriority.put(')', 1);
+        mathSymbolPriority.put('(', 1);
+        mathSymbolPriority.put('+', 2);
+        mathSymbolPriority.put('-', 2);
         mathSymbolPriority.put('*', 3);
         mathSymbolPriority.put('/', 3);
         stack = new Stack<>();
@@ -41,8 +41,12 @@ public class OrdinaryCalculator implements Calculator {
             }
 
         }
-        if (!stack.getStack().isEmpty()) {
-            output = output + stack.pop();
+        while (!stack.getStack().isEmpty()) {
+            char sym = stack.pop();
+            if ((sym != ')') && (sym != '(')) {
+                output = output + sym;
+            }
+
         }
 
         return output;
@@ -55,14 +59,13 @@ public class OrdinaryCalculator implements Calculator {
             return;
         }
 
-        //mathSymbolPriority.get(stack.getStack().get(stack.getStackIterator() - 1));
+
 
         if ((symbol != ')') && (symbol != '(')) {
             int weightOfSymbol = mathSymbolPriority.get(symbol);
             int indexSym = stack.getStackIterator();
             char symb = stack.getStack().get(indexSym);
             int weightOfStack = mathSymbolPriority.get(symb);
-            //int weightOfStack = mathSymbolPriority.get(stack.getStack().get(stack.getStackIterator() - 1));
 
             if (weightOfSymbol <= weightOfStack) {
                 char sym = stack.pop();
@@ -79,7 +82,9 @@ public class OrdinaryCalculator implements Calculator {
         if (stack.getStackIterator() != -1) {
             if ((symbol == ')') && (stack.getStack().contains('('))) {
                 for (int i = 0; i < stack.getStack().size(); i++) {
-                    char sym = stack.pop();
+
+
+                    char sym = stack.pop(); //todo толкать пока не дойдет до (
                     if ((sym != ')') && (sym != '(')) {
                         output = output + sym;
                     }
@@ -98,99 +103,12 @@ public class OrdinaryCalculator implements Calculator {
             char sym = stack.pop();
             if ((sym != ')') && (sym != '(')) {
                 output = output + sym;
+                return;
             }
-            stack.push(symbol);
-            return;
         }
-
         stack.push(symbol);
-
-
-
-
-
-
-
-
-
     }
-
-
-/*    public void addToStack(char symbol) {
-        if (stack.getStack().isEmpty()) {
-            stack.push(symbol);
-            return;
-        }
-
-
-
-
-        if ((symbol != ')') && (symbol != '(') && (!stack.getStack().contains('('))) { //Todo Убрать последнее условие
-            if (mathSymbolPriority.get(symbol) <= mathSymbolPriority.get(stack.getStack().get(stack.getTopOfStack()))) {
-                char sym = stack.pop();
-                if ((sym != ')') && (sym != '(')) {
-                    output = output + sym;
-                }
-                stack.push(symbol);
-                return;
-            } else {
-                stack.push(symbol);
-                return;
-            }
-        }
-
-
-
-        if (stack.getStackIterator() != -1) {
-            if ((symbol == ')') && (stack.getStack().contains('('))) {
-                for (int i = 0; i < stack.getStack().size(); i++) {
-                    char sym = stack.pop();
-                    if ((sym != ')') && (sym != '(')) {
-                        output = output + sym;
-                    }
-                }
-                if (!stack.getStack().isEmpty()) {
-                    char sym = stack.pop();
-                    if ((sym != ')') && (sym != '(')) {
-                        output = output + sym;
-                    }
-                }
-                return;
-            }
-        }
-
-
-        stack.push(symbol);
-    }*/
-
-
-
-
-
-
-
-
-
-
-
 }
 
 
 
-/*
-        for (Character sym : stack.getStack()) {
-                if ((sym == symbol) && ((symbol != ')') && (symbol != '('))) {
-                output = output + stack.pop();
-                stack.push(symbol);
-                return;
-                }
-                }*/
-
-
-/*        for (Character sym : stack.getStack()) {
-            if ((sym == symbol) && ((symbol != ')') && (symbol != '('))) {
-                output = output + stack.pop();
-                stack.push(symbol);
-                return;
-            }
-        }*/
