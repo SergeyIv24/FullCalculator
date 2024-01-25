@@ -1,20 +1,17 @@
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class OrdinaryCalculator implements Calculator {
     private String expression;
     private char[] mathSymbols;
-    private Map<Character, Integer> mathSymbolPriority = new HashMap<>();
-    private List<Character> plus = new ArrayList<>();
-    private List<Character> multy = new ArrayList<>();
-    Stack<Character> stack;
-    String output = "";
+    private Map<Character, Integer> mathSymbolPriority;
+    private Stack<Character> stack;
+    private String output = "";
 
     public OrdinaryCalculator(String expression) {
         this.expression = expression;
         mathSymbols  = new char[]{'(', ')', '+', '-', '*', '/'};
+        mathSymbolPriority = new HashMap<>();
         mathSymbolPriority.put(')', 1);
         mathSymbolPriority.put('(', 1);
         mathSymbolPriority.put('+', 2);
