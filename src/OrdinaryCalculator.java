@@ -28,6 +28,7 @@ public class OrdinaryCalculator implements Calculator {
                 output += exp[i];
                 indexContinue = i;
             } else {
+                output += " ";
                 return indexContinue;
             }
         }
@@ -38,22 +39,23 @@ public class OrdinaryCalculator implements Calculator {
         char[] arrExpression = expression.toCharArray();
         for (int i = 0; i < arrExpression.length; i++) {
             if (Character.isDigit(arrExpression[i])) {
+                output += " ";
                 i = makeNum(arrExpression, i);
 
             } else {
-                output += " ";
+                output += " "; //TODO вынести за цикл
                 addToStack(arrExpression[i]);
             }
         }
         while (!stack.getStack().isEmpty()) {
             char sym = stack.pop();
             if ((sym != ')') && (sym != '(')) {
-                output = output + ' ' + sym;
+                output = output + " " + sym;
             }
 
         }
 
-        return output.trim().replaceAll("  ", " ");
+        return output.trim().replaceAll("  ", " ").replaceAll("  ", " ");
 
     }
 
@@ -87,7 +89,7 @@ public class OrdinaryCalculator implements Calculator {
                 for (int i = stack.getStackIterator(); i >= -1; i--) {
                     if (stack.getStack().get(stack.getStackIterator()) != '(') {
                         char sym = stack.pop();
-                        output = output + sym;
+                        output = output + " " + sym;
                     } else {
                         stack.pop();
                         return;
