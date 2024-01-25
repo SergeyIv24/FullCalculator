@@ -1,11 +1,12 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class OrdinaryCalculator implements Calculator {
     private String expression;
     private char[] mathSymbols;
-    private HashMap<Character, Integer> mathSymbolPriority = new HashMap<>();
+    private Map<Character, Integer> mathSymbolPriority = new HashMap<>();
     private List<Character> plus = new ArrayList<>();
     private List<Character> multy = new ArrayList<>();
     Stack<Character> stack;
@@ -13,13 +14,13 @@ public class OrdinaryCalculator implements Calculator {
 
     public OrdinaryCalculator(String expression) {
         this.expression = expression;
-        mathSymbols  = new char[]{'(', ')', '+', '-', '*'};
-        mathSymbolPriority.put(')', -1);
+        mathSymbols  = new char[]{'(', ')', '+', '-', '*', '/'};
+        mathSymbolPriority.put(')', 0);
         mathSymbolPriority.put('(', 0);
         mathSymbolPriority.put('+', 1);
-        mathSymbolPriority.put('-', 2);
+        mathSymbolPriority.put('-', 1);
         mathSymbolPriority.put('*', 3);
-        mathSymbolPriority.put('/', 4);
+        mathSymbolPriority.put('/', 3);
         stack = new Stack<>();
     }
 
@@ -54,9 +55,78 @@ public class OrdinaryCalculator implements Calculator {
             return;
         }
 
+        //mathSymbolPriority.get(stack.getStack().get(stack.getStackIterator() - 1));
 
-        if ((symbol != ')') && (symbol != '(') && (!stack.getStack().contains('('))) {
-            if (mathSymbolPriority.get(symbol) >= mathSymbolPriority.get(stack.getStack().get(stack.getStackIterator()))) { // mathSymbolPriority.get(symbol) < 3
+        if ((symbol != ')') && (symbol != '(')) {
+            int weightOfSymbol = mathSymbolPriority.get(symbol);
+            int indexSym = stack.getStackIterator();
+            char symb = stack.getStack().get(indexSym);
+            int weightOfStack = mathSymbolPriority.get(symb);
+            //int weightOfStack = mathSymbolPriority.get(stack.getStack().get(stack.getStackIterator() - 1));
+
+            if (weightOfSymbol <= weightOfStack) {
+                char sym = stack.pop();
+                if ((sym != ')') && (sym != '(')) {
+                    output = output + sym;
+                }
+                stack.push(symbol);
+                return;
+            } else {
+                stack.push(symbol);
+                return;
+            }
+        }
+        if (stack.getStackIterator() != -1) {
+            if ((symbol == ')') && (stack.getStack().contains('('))) {
+                for (int i = 0; i < stack.getStack().size(); i++) {
+                    char sym = stack.pop();
+                    if ((sym != ')') && (sym != '(')) {
+                        output = output + sym;
+                    }
+                }
+                if (!stack.getStack().isEmpty()) {
+                    char sym = stack.pop();
+                    if ((sym != ')') && (sym != '(')) {
+                        output = output + sym;
+                    }
+                }
+                return;
+            }
+        }
+
+        if ((symbol == ')') && (!stack.getStack().contains('('))) {
+            char sym = stack.pop();
+            if ((sym != ')') && (sym != '(')) {
+                output = output + sym;
+            }
+            stack.push(symbol);
+            return;
+        }
+
+        stack.push(symbol);
+
+
+
+
+
+
+
+
+
+    }
+
+
+/*    public void addToStack(char symbol) {
+        if (stack.getStack().isEmpty()) {
+            stack.push(symbol);
+            return;
+        }
+
+
+
+
+        if ((symbol != ')') && (symbol != '(') && (!stack.getStack().contains('('))) { //Todo Убрать последнее условие
+            if (mathSymbolPriority.get(symbol) <= mathSymbolPriority.get(stack.getStack().get(stack.getTopOfStack()))) {
                 char sym = stack.pop();
                 if ((sym != ')') && (sym != '(')) {
                     output = output + sym;
@@ -91,7 +161,7 @@ public class OrdinaryCalculator implements Calculator {
 
 
         stack.push(symbol);
-    }
+    }*/
 
 
 

@@ -9,6 +9,10 @@ public class TestReversePolandNotation {
     OrdinaryCalculator test4;
     OrdinaryCalculator test5;
     OrdinaryCalculator test6;
+    OrdinaryCalculator test7;
+    OrdinaryCalculator test8;
+    OrdinaryCalculator test9;
+    OrdinaryCalculator test10;
 
     @BeforeEach
     public void createCalculator() {
@@ -24,6 +28,14 @@ public class TestReversePolandNotation {
         test5 = new OrdinaryCalculator(expression5);
         String expression6 = "(2*3)+1*(3+2*5)";
         test6 = new OrdinaryCalculator(expression6);
+        String expression7 = "1+2+2+2+3-1-1-2";
+        test7 = new OrdinaryCalculator(expression7);
+        String expression8 = "1*2*3*4*5*6/3";
+        test8 = new OrdinaryCalculator(expression8);
+        String expression9 = "2*1+(2*(1+2)/3)/3*9";
+        test9 = new OrdinaryCalculator(expression9);
+        String expression10 = "(2*1)/(2+1)/(2/1)*(2*3/3)";
+        test10 = new OrdinaryCalculator(expression10);
     }
 
     @Test
@@ -34,6 +46,10 @@ public class TestReversePolandNotation {
         Assertions.assertEquals("23*4*12++", test4.makeInvertPolandNotation());
         Assertions.assertEquals("23*4*5*6*", test5.makeInvertPolandNotation());
         Assertions.assertEquals("23*1325*+*+", test6.makeInvertPolandNotation());
+        Assertions.assertEquals("12+2+2+3+1-1-2-", test7.makeInvertPolandNotation());
+        Assertions.assertEquals("12*3*4*5*6*3/", test8.makeInvertPolandNotation());
+        Assertions.assertEquals("21*212+*3/3/9*+", test9.makeInvertPolandNotation());
+        Assertions.assertEquals("21*21+/21//23*3/*", test10.makeInvertPolandNotation());
     }
 
 }

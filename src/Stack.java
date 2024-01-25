@@ -4,9 +4,14 @@ import java.util.List;
 public class Stack <T> {
     private List<T> stack = new ArrayList<>();
     private int stackIterator;
+    private int topOfStack = 0;
 
     public Stack() {
         stackIterator = -1;
+    }
+
+    public int getTopOfStack() {
+        return topOfStack;
     }
 
     public List<T> getStack() {
