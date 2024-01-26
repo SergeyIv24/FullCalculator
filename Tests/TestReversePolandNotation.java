@@ -82,7 +82,6 @@ public class TestReversePolandNotation {
         test17 = new OrdinaryCalculator(expression6);
         String expression7 = "15/(7-(1+1))*3-(2+(1+1))*15/(7-(200+1))*3-(2+(1+1))*(15/(7-(1+1)))*3-(2+(1+1))+15/(7-(1+1))*3-(2+(1+1))";
         test18 = new OrdinaryCalculator(expression7);
-        //int ex = 15/(7-(1+1))*3-(2+(1+1))*15/(7-(200+1))*3-(2+(1+1))*(15/(7-(1+1)))*3-(2+(1+1))+15/(7-(1+1))*3-(2+(1+1));
         String expression8 = "3-(2+(1+1))*(15/(7-(1+1)))*3-(2+(1+1))+15/(7-(1+1))*3-(2+(1+1))";
         test19 = new OrdinaryCalculator(expression8);
         String expression9 = "3-(2+(1+1))";
@@ -97,9 +96,10 @@ public class TestReversePolandNotation {
         Assertions.assertEquals("100 100 / 1154 + 1000 10000 5000 - * 4532 * +", test15.makeInvertPolandNotation());
         Assertions.assertEquals("94 543 32 * 2901 12 + / 231 1 - * 832 43 + * 12 12 + * -", test16.makeInvertPolandNotation());
         Assertions.assertEquals("132 42 5 + 265 + + 3 - 63 81 + +", test17.makeInvertPolandNotation());
-        //Assertions.assertEquals("15 7 1 1 + - / 3 * 2 1 1 + + 15 * 7 200 1 + - / 3 * - 2 1 1 + + 15 7 1 1 + - / * 3 * - 2 1 1 + + - 15 7 1 1 + - / 3 * + 2 1 1 + + -", test18.makeInvertPolandNotation());
+        Assertions.assertEquals("15 7 1 1 + - / 3 * 2 1 1 + + 15 * 7 200 1 + - / 3 * - 2 1 1 + + 15 7 1 1 + - / * 3 * - 2 1 1 + + - 15 7 1 1 + - / 3 * + 2 1 1 + + -", test18.makeInvertPolandNotation());
         Assertions.assertEquals("3 2 1 1 + + 15 7 1 1 + - / * 3 * - 2 1 1 + + - 15 7 1 1 + - / 3 * + 2 1 1 + + -", test19.makeInvertPolandNotation());
-        //Assertions.assertEquals("3 2 1 1 + + -", test20.makeInvertPolandNotation());
+        Assertions.assertEquals("3 2 1 1 + + -", test20.makeInvertPolandNotation());
+
     }
 
 }

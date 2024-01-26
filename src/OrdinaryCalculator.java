@@ -25,7 +25,7 @@ public class OrdinaryCalculator implements Calculator {
         int indexContinue = 0;
         for (int i = startIndex; i < exp.length; i++) {
             if (Character.isDigit(exp[i])) {
-                output += exp[i];
+               output += exp[i];
                 indexContinue = i;
             } else {
                 output += " ";
@@ -68,20 +68,18 @@ public class OrdinaryCalculator implements Calculator {
 
         if ((symbol != ')') && (symbol != '(')) {
             int weightOfSymbol = mathSymbolPriority.get(symbol);
-            int indexSym = stack.getStackIterator(); //Индекс вершины стека
-            char symb = stack.getStack().get(indexSym);
-            int weightOfStack = mathSymbolPriority.get(symb);
-            //todo присоединять пока не кончится стек или пока не дойдет до (
-            if (weightOfSymbol <= weightOfStack) {
-                char sym = stack.pop();
-                if ((sym != ')') && (sym != '(')) {
-                    output = output + sym;
+            for (int i = stack.getStackIterator(); i >= 0; i--) {
+                char symb = stack.getStack().get(i);
+                int weightOfStack = mathSymbolPriority.get(symb);
+                if (weightOfSymbol <= weightOfStack) {
+                    char sym = stack.pop();
+                    if ((sym != ')') && (sym != '(')) {
+                        output = output + " " + sym;
+                    }
+                } else {
+                    stack.push(symbol);
+                    return;
                 }
-                stack.push(symbol);
-                return;
-            } else {
-                stack.push(symbol);
-                return;
             }
         }
 
@@ -102,6 +100,3 @@ public class OrdinaryCalculator implements Calculator {
         stack.push(symbol);
     }
 }
-
-
-
