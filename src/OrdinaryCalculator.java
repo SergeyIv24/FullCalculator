@@ -43,7 +43,7 @@ public class OrdinaryCalculator implements Calculator {
                 i = makeNum(arrExpression, i);
 
             } else {
-                output += " "; //TODO вынести за цикл
+                output += " ";
                 addToStack(arrExpression[i]);
             }
         }
@@ -55,7 +55,8 @@ public class OrdinaryCalculator implements Calculator {
 
         }
 
-        return output.trim().replaceAll("  ", " ").replaceAll("  ", " ");
+        return output.trim().replaceAll("  ", " ").replaceAll("  ", " ")
+                .replaceAll("  ", " ");
 
     }
 
@@ -70,7 +71,7 @@ public class OrdinaryCalculator implements Calculator {
             int indexSym = stack.getStackIterator(); //Индекс вершины стека
             char symb = stack.getStack().get(indexSym);
             int weightOfStack = mathSymbolPriority.get(symb);
-
+            //todo присоединять пока не кончится стек или пока не дойдет до (
             if (weightOfSymbol <= weightOfStack) {
                 char sym = stack.pop();
                 if ((sym != ')') && (sym != '(')) {

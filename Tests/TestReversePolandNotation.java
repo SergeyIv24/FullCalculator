@@ -72,38 +72,34 @@ public class TestReversePolandNotation {
         test12 = new OrdinaryCalculator(expression1);
         String expression2 = "(15+24)*81*(40+66)";
         test13 = new OrdinaryCalculator(expression2);
-        String expression3 = "(2+1)*(3+1)+2+3";
+        String expression3 = "10+20+30*40/50";
         test14 = new OrdinaryCalculator(expression3);
-        String expression4 = "2*3*4+(1+2)";
+        String expression4 = "100/100+1154+1000*(10000-5000)*4532";
         test15 = new OrdinaryCalculator(expression4);
-        String expression5 = "2*3*4*5*6";
+        String expression5 = "94-((543*32)/(2901+12))*(231-1)*(832+43)*(12+12)";
         test16 = new OrdinaryCalculator(expression5);
-        String expression6 = "(2*3)+1*(3+2*5)";
+        String expression6 = "(132+(42+5+265)-3)+(63+81)";
         test17 = new OrdinaryCalculator(expression6);
-        String expression7 = "1+2+2+2+3-1-1-2";
+        String expression7 = "15/(7-(1+1))*3-(2+(1+1))*15/(7-(200+1))*3-(2+(1+1))*(15/(7-(1+1)))*3-(2+(1+1))+15/(7-(1+1))*3-(2+(1+1))";
         test18 = new OrdinaryCalculator(expression7);
-        String expression8 = "1*2*3*4*5*6/3";
+        //int ex = 15/(7-(1+1))*3-(2+(1+1))*15/(7-(200+1))*3-(2+(1+1))*(15/(7-(1+1)))*3-(2+(1+1))+15/(7-(1+1))*3-(2+(1+1));
+        String expression8 = "3-(2+(1+1))*(15/(7-(1+1)))*3-(2+(1+1))+15/(7-(1+1))*3-(2+(1+1))";
         test19 = new OrdinaryCalculator(expression8);
-        String expression9 = "2*1+(2*(1+2)/3)/3*9";
+        String expression9 = "3-(2+(1+1))";
         test20 = new OrdinaryCalculator(expression9);
-        String expression10 = "(2*1)/(2+1)/(2/1)*(2*3/3)";
-        test21 = new OrdinaryCalculator(expression10);
-        String expression11 = "2*1+(2*(1+2)/3)/3*9*((1+2)*3/1)";
-        test22 = new OrdinaryCalculator(expression11);
+
     }
     @Test
     public void shouldReturnCorrectPolishNotationForNumbersMoreThen10() {
-/*        Assertions.assertEquals("1020+3040+*10+", test12.makeInvertPolandNotation());
-        Assertions.assertEquals("1524+81*4066+*", test13.makeInvertPolandNotation());
-        Assertions.assertEquals("21+31+*2+3+", test14.makeInvertPolandNotation());
-        Assertions.assertEquals("23*4*12++", test15.makeInvertPolandNotation());
-        Assertions.assertEquals("23*4*5*6*", test16.makeInvertPolandNotation());
-        Assertions.assertEquals("23*1325*+*+", test17.makeInvertPolandNotation());
-        Assertions.assertEquals("12+2+2+3+1-1-2-", test18.makeInvertPolandNotation());
-        Assertions.assertEquals("12*3*4*5*6*3/", test19.makeInvertPolandNotation());
-        Assertions.assertEquals("21*212+*3/3/9*+", test20.makeInvertPolandNotation());
-        Assertions.assertEquals("21*21+/21//23*3/*", test21.makeInvertPolandNotation());
-        Assertions.assertEquals("21*212+*3/3/9*12+3*1/*+", test22.makeInvertPolandNotation());*/
+        Assertions.assertEquals("10 20 + 30 40 + * 10 +", test12.makeInvertPolandNotation());
+        Assertions.assertEquals("15 24 + 81 * 40 66 + *", test13.makeInvertPolandNotation());
+        Assertions.assertEquals("10 20 + 30 40 * 50 / +", test14.makeInvertPolandNotation());
+        Assertions.assertEquals("100 100 / 1154 + 1000 10000 5000 - * 4532 * +", test15.makeInvertPolandNotation());
+        Assertions.assertEquals("94 543 32 * 2901 12 + / 231 1 - * 832 43 + * 12 12 + * -", test16.makeInvertPolandNotation());
+        Assertions.assertEquals("132 42 5 + 265 + + 3 - 63 81 + +", test17.makeInvertPolandNotation());
+        //Assertions.assertEquals("15 7 1 1 + - / 3 * 2 1 1 + + 15 * 7 200 1 + - / 3 * - 2 1 1 + + 15 7 1 1 + - / * 3 * - 2 1 1 + + - 15 7 1 1 + - / 3 * + 2 1 1 + + -", test18.makeInvertPolandNotation());
+        Assertions.assertEquals("3 2 1 1 + + 15 7 1 1 + - / * 3 * - 2 1 1 + + - 15 7 1 1 + - / 3 * + 2 1 1 + + -", test19.makeInvertPolandNotation());
+        //Assertions.assertEquals("3 2 1 1 + + -", test20.makeInvertPolandNotation());
     }
 
 }
