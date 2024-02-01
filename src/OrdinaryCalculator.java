@@ -101,4 +101,6 @@ public class OrdinaryCalculator implements Calculator {
         }
         stack.push(symbol); //Если все условия не сработали добавление в стек
     }
+
+    //Метод решения обратной польской нотации
 }
