@@ -104,7 +104,7 @@ public class OrdinaryCalculator implements Calculator {
     }
 
     //Метод решения обратной польской нотации
-    public double solvePolandNotation() {
+    public int solvePolandNotation() {
         String polExp = makeInvertPolandNotation();
         char[] arrPolandExp = polExp.toCharArray();
         for (int i = 0; i < arrPolandExp.length; i++) {
@@ -116,16 +116,33 @@ public class OrdinaryCalculator implements Calculator {
                 solveExpression(arrPolandExp[i]);
             }
         }
+        int total = 0;
+        if (stackForNumbers.getStackIterator() > -1) {
+            total = makeTotal();
+        }
 
-        return 0.0;
+        return total;
+    }
+
+    public int makeTotal() {
+        String totalStr = "";
+        while (stackForNumbers.getStackIterator() != - 1) {
+            char totalSym = stackForNumbers.pop();
+            if (totalSym != ' ') {
+                totalStr = totalStr + totalSym;
+            }
+        }
+
+        StringBuilder totalReverse = new StringBuilder(totalStr).reverse();
+        String totalNum = totalReverse.toString();
+
+        return Integer.parseInt(totalNum);
     }
 
 
     public void solveExpression(char mathSymbol) {
         int number1 = findNumberOne();
         int number2 = findNumberTwo();
-        System.out.println(number1);
-        System.out.println(number2);
         int result = 0;
         String resultStr = "";
 
@@ -136,9 +153,15 @@ public class OrdinaryCalculator implements Calculator {
             case '-':
                 result = number2 - number1;
                 break;
+            case '*':
+                result = number1 * number2;
+                break;
+            case '/':
+                result = number2 / number1;
+                break;
         }
 
-        resultStr = resultStr + result;
+        resultStr = " " + resultStr + result;
         char[] resArr = resultStr.toCharArray();
 
         for (char num : resArr) {
