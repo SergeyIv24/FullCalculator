@@ -4,9 +4,9 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        String ex = "3-(2+(1+1))*(15/(7-(1+1)))*3-(2+(1+1))+15/(7-(1+1))*3-(2+(1+1))";
+        String ex = "4+5+3";
         OrdinaryCalculator test = new OrdinaryCalculator(ex);
-        System.out.println(test.makeInvertPolandNotation());
+        System.out.println(test.solvePolandNotation());
 
 
 

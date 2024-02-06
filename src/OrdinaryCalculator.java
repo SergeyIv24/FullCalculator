@@ -5,8 +5,9 @@ public class OrdinaryCalculator implements Calculator {
     private final String expression; //Входное выражение
     private char[] mathSymbols;
     private Map<Character, Integer> mathSymbolPriority;
-    private Stack<Character> stack;
-    private String output = ""; //Выходная строка в польской нотации
+    private Stack<Character> stackForChar;
+    private Stack<Character> stackForNumbers;
+    private String polandExpression = ""; //Выходная строка в польской нотации
 
     public OrdinaryCalculator(String expression) {
         this.expression = expression;
@@ -18,7 +19,8 @@ public class OrdinaryCalculator implements Calculator {
         mathSymbolPriority.put('-', 2);
         mathSymbolPriority.put('*', 3);
         mathSymbolPriority.put('/', 3);
-        stack = new Stack<>(); //Объект стек, для хранения операторов
+        stackForChar = new Stack<>(); //Объект стек, для хранения операторов
+        stackForNumbers = new Stack<>(); //Объект стек, для хранения чисел
     }
 
     //Проверка на двухзначные и n - значные числа
@@ -26,10 +28,10 @@ public class OrdinaryCalculator implements Calculator {
         int indexContinue = 0; //Стартовое значение индекса для возврата
         for (int i = startIndex; i < exp.length; i++) { //Цикл по математическому выражению
             if (Character.isDigit(exp[i])) { //Если цифра
-               output += exp[i]; //Добавление к выходной строке
+               polandExpression += exp[i]; //Добавление к выходной строке
                 indexContinue = i; //Индекс проверенного элемента
             } else { //Если не цифра, завершение цикла, возврат индекса для продолжения цикла по выражению
-                output += " ";
+                polandExpression += " ";
                 return indexContinue;
             }
         }
@@ -41,66 +43,144 @@ public class OrdinaryCalculator implements Calculator {
         char[] arrExpression = expression.toCharArray(); //Массив символов
         for (int i = 0; i < arrExpression.length; i++) { //Цикл по элементам выражения
             if (Character.isDigit(arrExpression[i])) { //Если символ цифра
-                output += " ";
+                polandExpression += " ";
                 i = makeNum(arrExpression, i); //Добавить число со всеми разрядами в выходную строку
 
             } else { //Если символ, то добавление в стек
-                output += " ";
+                polandExpression += " ";
                 addToStack(arrExpression[i]); //Алгоритм управления стеком
             }
         }
         //Если элементы выражения закончились, а стек еще не пуст
-        while (!stack.getStack().isEmpty()) {
-            char sym = stack.pop(); //Выталкивание элемента
+        while (!stackForChar.getStack().isEmpty()) {
+            char sym = stackForChar.pop(); //Выталкивание элемента
             if ((sym != ')') && (sym != '(')) { //Если не скобка
-                output = output + " " + sym; //Добавление к выходной строке
+                polandExpression = polandExpression + " " + sym; //Добавление к выходной строке
             }
         }
-        return output.trim().replaceAll("  ", " ").replaceAll("  ", " ")
+        return polandExpression.trim().replaceAll("  ", " ").replaceAll("  ", " ")
                 .replaceAll("  ", " ");// Удаление лишних пробелов
     }
 
     //Алгоритм добавления элементов в стек
     public void addToStack(char symbol) {
         //Если стек пуст, добавление символа в стек
-        if (stack.getStack().isEmpty()) {
-            stack.push(symbol);
+        if (stackForChar.getStack().isEmpty()) {
+            stackForChar.push(symbol);
             return;
         }
         //Если не скобка
         if ((symbol != ')') && (symbol != '(')) {
             int weightOfSymbol = mathSymbolPriority.get(symbol); //Приоритет входного символа
-            for (int i = stack.getStackIterator(); i >= 0; i--) { //Цикл по каждому элементу в стеке
-                char symb = stack.getStack().get(i); //Текущий символ
+            for (int i = stackForChar.getStackIterator(); i >= 0; i--) { //Цикл по каждому элементу в стеке
+                char symb = stackForChar.getStack().get(i); //Текущий символ
                 int weightOfStack = mathSymbolPriority.get(symb); //Приоритет текущего символа
                 if (weightOfSymbol <= weightOfStack) { //Если входной символ имеет приоритет меньше, чем текущий
-                    char sym = stack.pop(); //Выталкивание элемента из стека
+                    char sym = stackForChar.pop(); //Выталкивание элемента из стека
                     if ((sym != ')') && (sym != '(')) {
-                        output = output + " " + sym; //Если вытолкнута не скобка, добавление к выходной строке
+                        polandExpression = polandExpression + " " + sym; //Если вытолкнута не скобка, добавление к выходной строке
                     }
                 } else { //Если входной символ имеет приоритет больше, чем текущий
-                    stack.push(symbol); //Добавление в стек
+                    stackForChar.push(symbol); //Добавление в стек
                     return;
                 }
             }
         }
 
-        if (stack.getStackIterator() != -1) { //Если закрывающая скобка
-            if ((symbol == ')') && (stack.getStack().contains('('))) { //И есть открывающая скобка
-                for (int i = stack.getStackIterator(); i >= -1; i--) { //Цикл по элементам стека
-                    if (stack.getStack().get(stack.getStackIterator()) != '(') { //Выталкиваются все до первой
-                        char sym = stack.pop(); //Открывающей скобки
-                        output = output + " " + sym;
+        if (stackForChar.getStackIterator() != -1) { //Если закрывающая скобка
+            if ((symbol == ')') && (stackForChar.getStack().contains('('))) { //И есть открывающая скобка
+                for (int i = stackForChar.getStackIterator(); i >= -1; i--) { //Цикл по элементам стека
+                    if (stackForChar.getStack().get(stackForChar.getStackIterator()) != '(') { //Выталкиваются все до первой
+                        char sym = stackForChar.pop(); //Открывающей скобки
+                        polandExpression = polandExpression + " " + sym;
                     } else {
-                        stack.pop(); //Открытая скобка выталкивается и не записывается в выходною строку
+                        stackForChar.pop(); //Открытая скобка выталкивается и не записывается в выходною строку
                         return;
                     }
                 }
-
             }
         }
-        stack.push(symbol); //Если все условия не сработали добавление в стек
+        stackForChar.push(symbol); //Если все условия не сработали добавление в стек
     }
 
     //Метод решения обратной польской нотации
+    public double solvePolandNotation() {
+        String polExp = makeInvertPolandNotation();
+        char[] arrPolandExp = polExp.toCharArray();
+        for (int i = 0; i < arrPolandExp.length; i++) {
+            if (Character.isDigit(arrPolandExp[i])) {
+                stackForNumbers.push(arrPolandExp[i]);
+            } else if (arrPolandExp[i] == ' ') {
+                stackForNumbers.push(arrPolandExp[i]);
+            } else {
+                solveExpression(arrPolandExp[i]);
+            }
+        }
+
+        return 0.0;
+    }
+
+
+    public void solveExpression(char mathSymbol) {
+        int number1 = findNumberOne();
+        int number2 = findNumberTwo();
+        System.out.println(number1);
+        System.out.println(number2);
+        int result = 0;
+        String resultStr = "";
+
+        switch (mathSymbol) {
+            case '+':
+                result = number1 + number2;
+                break;
+            case '-':
+                result = number2 - number1;
+                break;
+        }
+
+        resultStr = resultStr + result;
+        char[] resArr = resultStr.toCharArray();
+
+        for (char num : resArr) {
+            stackForNumbers.push(num);
+        }
+    }
+
+    public int findNumberOne() {
+        String numberOne = "";
+        int countSpaces = 0;
+
+        while (countSpaces < 2 && stackForNumbers.getStackIterator() > -1) {
+            char symbol = stackForNumbers.pop();
+            if (Character.isDigit(symbol)) {
+                numberOne = numberOne + symbol;
+            } else {
+                countSpaces += 1;
+            }
+        }
+
+        StringBuilder number = new StringBuilder(numberOne);
+        number.reverse();
+        String num1 = number.toString();
+        return Integer.parseInt(num1);
+    }
+
+    public int findNumberTwo() {
+        String numberTwo = "";
+        int countSpaces = 0;
+
+        while (countSpaces < 1 && stackForNumbers.getStackIterator() > -1) {
+            char symbol = stackForNumbers.pop();
+            if (Character.isDigit(symbol)) {
+                numberTwo = numberTwo + symbol;
+            } else {
+                countSpaces += 1;
+            }
+        }
+
+        StringBuilder number = new StringBuilder(numberTwo);
+        number.reverse();
+        String num2 = number.toString();
+        return Integer.parseInt(num2);
+    }
 }
