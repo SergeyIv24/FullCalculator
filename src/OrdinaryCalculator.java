@@ -3,10 +3,10 @@ import java.util.Map;
 
 public class OrdinaryCalculator implements Calculator {
     private final String expression; //Входное выражение
-    private char[] mathSymbols;
-    private Map<Character, Integer> mathSymbolPriority;
-    private Stack<Character> stackForChar;
-    private Stack<Character> stackForNumbers;
+    private final char[] mathSymbols;
+    private final Map<Character, Integer> mathSymbolPriority;
+    private final Stack<Character> stackForChar;
+    private final Stack<Character> stackForNumbers;
     private String polandExpression = ""; //Выходная строка в польской нотации
 
     public OrdinaryCalculator(String expression) {
@@ -104,7 +104,7 @@ public class OrdinaryCalculator implements Calculator {
     }
 
     //Метод решения обратной польской нотации
-    public int solvePolandNotation() {
+    public long solvePolandNotation() {
         String polExp = makeInvertPolandNotation();
         char[] arrPolandExp = polExp.toCharArray();
         for (int i = 0; i < arrPolandExp.length; i++) {
@@ -116,7 +116,7 @@ public class OrdinaryCalculator implements Calculator {
                 solveExpression(arrPolandExp[i]);
             }
         }
-        int total = 0;
+        long total = 0;
         if (stackForNumbers.getStackIterator() > -1) {
             total = makeTotal();
         }
@@ -124,7 +124,7 @@ public class OrdinaryCalculator implements Calculator {
         return total;
     }
 
-    public int makeTotal() {
+    public long makeTotal() {
         String totalStr = "";
         while (stackForNumbers.getStackIterator() != - 1) {
             char totalSym = stackForNumbers.pop();
@@ -136,14 +136,14 @@ public class OrdinaryCalculator implements Calculator {
         StringBuilder totalReverse = new StringBuilder(totalStr).reverse();
         String totalNum = totalReverse.toString();
 
-        return Integer.parseInt(totalNum);
+        return Long.parseLong(totalNum); //Integer.parseInt(totalNum);
     }
 
 
     public void solveExpression(char mathSymbol) {
-        int number1 = findNumberOne();
-        int number2 = findNumberTwo();
-        int result = 0;
+        long number1 = findNumberOne();
+        long number2 = findNumberTwo();
+        long result = 0;
         String resultStr = "";
 
         switch (mathSymbol) {
@@ -169,7 +169,7 @@ public class OrdinaryCalculator implements Calculator {
         }
     }
 
-    public int findNumberOne() {
+    public long findNumberOne() {
         String numberOne = "";
         int countSpaces = 0;
 
@@ -185,10 +185,10 @@ public class OrdinaryCalculator implements Calculator {
         StringBuilder number = new StringBuilder(numberOne);
         number.reverse();
         String num1 = number.toString();
-        return Integer.parseInt(num1);
+        return Long.parseLong(num1);
     }
 
-    public int findNumberTwo() {
+    public long findNumberTwo() {
         String numberTwo = "";
         int countSpaces = 0;
 
@@ -204,6 +204,7 @@ public class OrdinaryCalculator implements Calculator {
         StringBuilder number = new StringBuilder(numberTwo);
         number.reverse();
         String num2 = number.toString();
-        return Integer.parseInt(num2);
+
+        return Long.parseLong(num2);
     }
 }
