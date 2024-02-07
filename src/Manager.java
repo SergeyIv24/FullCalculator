@@ -4,6 +4,7 @@ public class Manager {
     Scanner scanner = new Scanner(System.in);
     CheckerInput checkerInput;
     OrdinaryCalculator calculator;
+    ConvertToDifferentSystem converter;
 
     public void interactionWithUser() {
         System.out.println("Выберите, действие: ");
@@ -43,6 +44,18 @@ public class Manager {
                 } else {
                     System.out.println("Проверьте ввод и попробуйте еще раз!");
                 }
+            case 3:
+                System.out.println("Введите систему счисления из которой нужен перевод: ");
+                int systemFrom = scanner.nextInt();
+                System.out.println("Введите систему счисления в которую нужно перевести: ");
+                int systemTo = scanner.nextInt();
+                System.out.println("Введите число: ");
+                int number = scanner.nextInt();
+                converter = new ConvertToDifferentSystem(number, systemTo);
+                System.out.println("Число в " + systemTo + " системе счисления: " + converter.convertToDiffSystem());
+
+
+
         }
 
     }
