@@ -21,6 +21,9 @@ public class TestReversePolandNotation {
     OrdinaryCalculator test18;
     OrdinaryCalculator test19;
     OrdinaryCalculator test20;
+    OrdinaryCalculator test21;
+    OrdinaryCalculator test22;
+    OrdinaryCalculator test23;
 
 
     @BeforeEach
@@ -83,6 +86,12 @@ public class TestReversePolandNotation {
         test19 = new OrdinaryCalculator(expression8);
         String expression9 = "3-(2+(1+1))";
         test20 = new OrdinaryCalculator(expression9);
+        String expression10 = "(2^3)^4";
+        test21 = new OrdinaryCalculator(expression10);
+        String expression11 = "(2*3)+~8-2";
+        test22 = new OrdinaryCalculator(expression11);
+        String expression12 = "~8-~3";
+        test23 = new OrdinaryCalculator(expression12);
 
     }
     @Test
@@ -96,6 +105,9 @@ public class TestReversePolandNotation {
         Assertions.assertEquals("15 7 1 1 + - / 3 * 2 1 1 + + 15 * 7 200 1 + - / 3 * - 2 1 1 + + 15 7 1 1 + - / * 3 * - 2 1 1 + + - 15 7 1 1 + - / 3 * + 2 1 1 + + -", test18.makeInvertPolandNotation());
         Assertions.assertEquals("3 2 1 1 + + 15 7 1 1 + - / * 3 * - 2 1 1 + + - 15 7 1 1 + - / 3 * + 2 1 1 + + -", test19.makeInvertPolandNotation());
         Assertions.assertEquals("3 2 1 1 + + -", test20.makeInvertPolandNotation());
+        Assertions.assertEquals("2 3 ^ 4 ^", test21.makeInvertPolandNotation());
+        Assertions.assertEquals("2 3 * ~8 + 2 -", test22.makeInvertPolandNotation());
+        Assertions.assertEquals("~8 ~3 -", test23.makeInvertPolandNotation());
 
     }
 
@@ -108,21 +120,22 @@ public class TestReversePolandNotation {
         Assertions.assertEquals(27, test4.solvePolandNotation());
         Assertions.assertEquals(720, test5.solvePolandNotation());
         Assertions.assertEquals(19, test6.solvePolandNotation());
-
         Assertions.assertEquals(6, test7.solvePolandNotation());
         Assertions.assertEquals(240, test8.solvePolandNotation());
         Assertions.assertEquals(2, test9.solvePolandNotation());
         Assertions.assertEquals(0, test10.solvePolandNotation());
         Assertions.assertEquals(164, test11.solvePolandNotation());
         Assertions.assertEquals(2110, test12.solvePolandNotation());
-
         Assertions.assertEquals(334854, test13.solvePolandNotation());
         Assertions.assertEquals(54, test14.solvePolandNotation());
         Assertions.assertEquals(22_660_001_155L, test15.solvePolandNotation());
         Assertions.assertEquals(-29_235_520_418L, test16.solvePolandNotation());
         Assertions.assertEquals(585, test17.solvePolandNotation());
-        //Assertions.assertEquals(-32, test19.solvePolandNotation());
+        Assertions.assertEquals(-32, test19.solvePolandNotation());
         Assertions.assertEquals(-1, test20.solvePolandNotation());
+        Assertions.assertEquals(4096, test21.solvePolandNotation());
+        Assertions.assertEquals(-4, test22.solvePolandNotation());
+        Assertions.assertEquals(-5, test23.solvePolandNotation());
     }
 
 }

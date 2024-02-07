@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        String ex = "2^3";
+        String ex = "(2^3)^4";
         OrdinaryCalculator test = new OrdinaryCalculator(ex);
         System.out.println(test.solvePolandNotation());
 
