@@ -145,7 +145,7 @@ public class OrdinaryCalculator implements Calculator {
         StringBuilder totalReverse = new StringBuilder(totalStr).reverse();
         String totalNum = totalReverse.toString();
 
-        return Long.parseLong(totalNum); //Integer.parseInt(totalNum);
+        return Long.parseLong(totalNum);
     }
 
 
@@ -167,6 +167,9 @@ public class OrdinaryCalculator implements Calculator {
                 break;
             case '/':
                 result = number2 / number1;
+                break;
+            case '^':
+                result = (long) Math.pow(number2, number1);
                 break;
         }
 
