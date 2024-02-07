@@ -19,6 +19,8 @@ public class OrdinaryCalculator implements Calculator {
         mathSymbolPriority.put('-', 2);
         mathSymbolPriority.put('*', 3);
         mathSymbolPriority.put('/', 3);
+        mathSymbolPriority.put('^', 4); //Возведение в степень
+        mathSymbolPriority.put('~', 5); //Унарный минус для обработки отрицательных операндов
         stackForChar = new Stack<>(); //Объект стек, для хранения операторов
         stackForNumbers = new Stack<>(); //Объект стек, для хранения чисел
     }
@@ -43,9 +45,14 @@ public class OrdinaryCalculator implements Calculator {
         char[] arrExpression = expression.toCharArray(); //Массив символов
         for (int i = 0; i < arrExpression.length; i++) { //Цикл по элементам выражения
             if (Character.isDigit(arrExpression[i])) { //Если символ цифра
-                polandExpression += " ";
+                if (i > 0 && arrExpression[i - 1] != '~') {
+                    polandExpression += " ";
+                }
+
                 i = makeNum(arrExpression, i); //Добавить число со всеми разрядами в выходную строку
 
+            } else if (arrExpression[i] == '~') {
+                polandExpression += arrExpression[i];
             } else { //Если символ, то добавление в стек
                 polandExpression += " ";
                 addToStack(arrExpression[i]); //Алгоритм управления стеком
@@ -110,6 +117,8 @@ public class OrdinaryCalculator implements Calculator {
         for (int i = 0; i < arrPolandExp.length; i++) {
             if (Character.isDigit(arrPolandExp[i])) {
                 stackForNumbers.push(arrPolandExp[i]);
+            } else if (arrPolandExp[i] == '~') {
+                stackForNumbers.push('-');
             } else if (arrPolandExp[i] == ' ') {
                 stackForNumbers.push(arrPolandExp[i]);
             } else {
@@ -177,6 +186,8 @@ public class OrdinaryCalculator implements Calculator {
             char symbol = stackForNumbers.pop();
             if (Character.isDigit(symbol)) {
                 numberOne = numberOne + symbol;
+            } else if (symbol == '-') {
+                numberOne = numberOne + symbol;
             } else {
                 countSpaces += 1;
             }
@@ -195,6 +206,8 @@ public class OrdinaryCalculator implements Calculator {
         while (countSpaces < 1 && stackForNumbers.getStackIterator() > -1) {
             char symbol = stackForNumbers.pop();
             if (Character.isDigit(symbol)) {
+                numberTwo = numberTwo + symbol;
+            } else if (symbol == '-') {
                 numberTwo = numberTwo + symbol;
             } else {
                 countSpaces += 1;
