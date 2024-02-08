@@ -49,10 +49,20 @@ public class Manager {
                 int systemFrom = scanner.nextInt();
                 System.out.println("Введите систему счисления в которую нужно перевести: ");
                 int systemTo = scanner.nextInt();
+
                 System.out.println("Введите число: ");
-                int number = scanner.nextInt();
-                converter = new ConvertToDifferentSystem(number, systemTo);
-                System.out.println("Число в " + systemTo + " системе счисления: " + converter.convertToDiffSystem());
+                if (systemTo == 10) {
+                    String numStr = scanner.next();
+                    System.out.println(ConvertToDifferentSystem.convertFromDiffSystemTo10(numStr, systemFrom));
+                } else {
+                    int number = scanner.nextInt();
+                    System.out.println(ConvertToDifferentSystem.convertToDiffSystemFrom10(number, systemTo));
+                }
+
+
+
+/*                System.out.println("Число в " + systemTo + " системе счисления: " +
+                        ConvertToDifferentSystem.convertToDiffSystemFrom10(number, systemTo));*/
 
 
 
