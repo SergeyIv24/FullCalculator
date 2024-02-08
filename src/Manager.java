@@ -51,18 +51,19 @@ public class Manager {
                 int systemTo = scanner.nextInt();
 
                 System.out.println("Введите число: ");
-                if (systemTo == 10) {
+
+                if (systemFrom == 10) {
+                    int number = scanner.nextInt();
+                    System.out.println(ConvertToDifferentSystem.convertToDiffSystemFrom10(number, systemTo));
+                } else if (systemTo == 10) {
                     String numStr = scanner.next();
                     System.out.println(ConvertToDifferentSystem.convertFromDiffSystemTo10(numStr, systemFrom));
                 } else {
-                    int number = scanner.nextInt();
-                    System.out.println(ConvertToDifferentSystem.convertToDiffSystemFrom10(number, systemTo));
+                    String numStr = scanner.next();
+                    int numIn10 = ConvertToDifferentSystem.convertFromDiffSystemTo10(numStr, systemFrom);
+                    System.out.println(ConvertToDifferentSystem.convertToDiffSystemFrom10(numIn10, systemTo));
                 }
 
-
-
-/*                System.out.println("Число в " + systemTo + " системе счисления: " +
-                        ConvertToDifferentSystem.convertToDiffSystemFrom10(number, systemTo));*/
 
 
 
