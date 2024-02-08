@@ -8,9 +8,9 @@ public class Manager {
 
     public void interactionWithUser() {
         System.out.println("Выберите, действие: ");
-        System.out.println("1 - Обычный калькулятор");
-        System.out.println("2 - Перевод выражения в обратную польскую запись");
-        System.out.println("3 - Перевод в другую систему счисления");
+        System.out.println("1 - Решить выражение.");
+        System.out.println("2 - Перевод выражения в обратную польскую запись.");
+        System.out.println("3 - Перевод в другую систему счисления.");
 
         int selectionCalculator = scanner.nextInt();
 
