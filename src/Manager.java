@@ -4,13 +4,13 @@ public class Manager {
     Scanner scanner = new Scanner(System.in);
     CheckerInput checkerInput;
     OrdinaryCalculator calculator;
-    ConvertToDifferentSystem converter;
 
     public void interactionWithUser() {
         System.out.println("Выберите, действие: ");
         System.out.println("1 - Решить выражение.");
         System.out.println("2 - Перевод выражения в обратную польскую запись.");
         System.out.println("3 - Перевод в другую систему счисления.");
+        System.out.println("4 - Вычислить выражение в другой СИ");
 
         int selectionCalculator = scanner.nextInt();
 
@@ -44,6 +44,8 @@ public class Manager {
                 } else {
                     System.out.println("Проверьте ввод и попробуйте еще раз!");
                 }
+                break;
+
             case 3:
                 System.out.println("Введите систему счисления из которой нужен перевод: ");
                 int systemFrom = scanner.nextInt();
@@ -63,6 +65,15 @@ public class Manager {
                     int numIn10 = ConvertToDifferentSystem.convertFromDiffSystemTo10(numStr, systemFrom);
                     System.out.println(ConvertToDifferentSystem.convertToDiffSystemFrom10(numIn10, systemTo));
                 }
+                break;
+
+            case 4:
+                System.out.println("Введите математическое выражение для расчета:");
+                String userExp = scanner.next();
+                System.out.println("Укажите систему счисления:");
+                int userSystem = scanner.nextInt();
+                System.out.println(ConvertToDifferentSystem.calculateTotal(userExp, userSystem));
+                break;
 
 
 
