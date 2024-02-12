@@ -1,6 +1,6 @@
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+
+//Todo нет проверки алфавита СИ в двоичную можно записать ABCD
 
 public class ConvertToDifferentSystem {
 
