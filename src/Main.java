@@ -13,7 +13,9 @@ public class Main {
         System.out.println(ConvertToDifferentSystem.calculateTotal(exp, 2));*/
 
 
-        System.out.println(ConvertToDifferentSystem.convertToDiffSystemFrom10(10, 2));
+        //System.out.println(ConvertToDifferentSystem.convertToDiffSystemFrom10(10, 2));
+
+        System.out.println(ConvertToDifferentSystem.convertFromDiffSystemTo10("24B", 16));
 
 
     }

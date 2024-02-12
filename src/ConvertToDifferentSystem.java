@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class ConvertToDifferentSystem {
 
-    private static final HashMap<Integer, String> lettersForNumber = new HashMap<>(); //Число - буква
+    private static final HashMap<Integer, Character> lettersForNumber = new HashMap<>(); //Число - буква
 
     private static void fillMap(int system) {
         if (system < 11) {
@@ -19,7 +19,7 @@ public class ConvertToDifferentSystem {
 
         int k = 0;
         for (int i = 10; i < system; i++, k++) {
-            lettersForNumber.put(i, String.valueOf(alphabet[k])); //Заполнение мапы ключами и буквами
+            lettersForNumber.put(i, alphabet[k]); //Заполнение мапы ключами и буквами
         }
     }
 
@@ -55,16 +55,15 @@ public class ConvertToDifferentSystem {
         char[] arrExp = expNot10.toCharArray();
         int j = arrExp.length - 1;
         for (int i = 0; i < arrExp.length; i++, j--) {
-            int numByPosition = 0;
             if (!Character.isDigit(arrExp[i])) {
-                for (String symbol : lettersForNumber.values()) {
-                    if (symbol.equals(arrExp[i])) {
-                        //todo идти по ключам, но смотреть в значения мапы и сравнивать элемент массива со значением в мапе
+                for (int key : lettersForNumber.keySet()) {
+                    if (lettersForNumber.get(key) == arrExp[i]) {
+                        result = (int) (result + (key * Math.pow(systemFrom, j)));
                     }
                 }
+            } else {
+                result = (int) (result + Integer.parseInt(String.valueOf(arrExp[i])) * Math.pow(systemFrom, j));
             }
-
-            result = (int) (result + Integer.parseInt(String.valueOf(arrExp[i])) * Math.pow(systemFrom, j));
         }
         return result;
     }
