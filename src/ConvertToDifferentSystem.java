@@ -4,21 +4,21 @@ import java.util.HashMap;
 
 public class ConvertToDifferentSystem {
 
-    private static final HashMap<Integer, Character> lettersForNumber = new HashMap<>(); //Число - буква
+    private static final HashMap<Long, Character> lettersForNumber = new HashMap<>(); //Число - буква
 
     private static void fillMap(int system) {
         if (system < 11) {
             return;
         }
 
-        char[] alphabet = new char[26]; //Алфавит для СИ больше 10
+        char[] alphabet = new char[36]; //Алфавит для СИ больше 10
         int j = 0;
         for (char i = 'A'; i <= 'Z'; i++, j++) { //Заполнения алфавита заглавными латинскими буквами
             alphabet[j] = i;
         }
 
         int k = 0;
-        for (int i = 10; i < system; i++, k++) {
+        for (long i = 10; i < system; i++, k++) {
             lettersForNumber.put(i, alphabet[k]); //Заполнение мапы ключами и буквами
         }
     }
@@ -26,12 +26,26 @@ public class ConvertToDifferentSystem {
 
     //Перевод в любую систему счисления из 10
     public static String convertToDiffSystemFrom10(long number10, int systemTo) {
-        fillMap(systemTo);
-        String result = "";
-        int surplus;
 
-        while (number10 > 1) {
-            surplus = (int) (number10 % systemTo);
+       boolean isNegative = false;
+        if (number10 < 0) {
+            isNegative = true;
+            number10 = number10 * (-1);
+        }
+        String result = "";
+        fillMap(systemTo);
+
+        if (systemTo >= 10 && number10 < systemTo) {
+            if (lettersForNumber.containsKey(number10)) {
+                return result + lettersForNumber.get(number10);
+            }
+
+        }
+
+        long surplus;
+
+        while (number10 >= systemTo) {
+            surplus =  (number10 % systemTo);
             number10 = number10 / systemTo;
 
             if (systemTo > 10) { //Если СИ больше 10
@@ -45,26 +59,41 @@ public class ConvertToDifferentSystem {
             }
         }
         StringBuilder revResult = new StringBuilder(result).reverse();
+
+        if (isNegative) {
+            return "-" + number10 + revResult;
+        }
+
         return number10 + revResult.toString();
     }
 
     //Перевод из любой системы счисления в 10
-    public static int convertFromDiffSystemTo10(String expNot10, int systemFrom) {
+    public static long convertFromDiffSystemTo10(String expNot10, int systemFrom) {
         fillMap(systemFrom);
-        int result = 0;
+        long result = 0;
         char[] arrExp = expNot10.toCharArray();
+
+        boolean isNegative = false;
+        if (arrExp[0] == '-') {
+            isNegative = true;
+        }
+
         int j = arrExp.length - 1;
         for (int i = 0; i < arrExp.length; i++, j--) {
             if (!Character.isDigit(arrExp[i])) {
-                for (int key : lettersForNumber.keySet()) {
+                for (long key : lettersForNumber.keySet()) {
                     if (lettersForNumber.get(key) == arrExp[i]) {
-                        result = (int) (result + (key * Math.pow(systemFrom, j)));
+                        result = (long) (result + (key * Math.pow(systemFrom, j)));
                     }
                 }
             } else {
-                result = (int) (result + Integer.parseInt(String.valueOf(arrExp[i])) * Math.pow(systemFrom, j));
+                result = (long) (result + Integer.parseInt(String.valueOf(arrExp[i])) * Math.pow(systemFrom, j));
             }
         }
+        if (isNegative) {
+            result = result * (-1);
+        }
+
         return result;
     }
 

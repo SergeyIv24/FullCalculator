@@ -62,7 +62,7 @@ public class Manager {
                     System.out.println(ConvertToDifferentSystem.convertFromDiffSystemTo10(numStr, systemFrom));
                 } else {
                     String numStr = scanner.next();
-                    int numIn10 = ConvertToDifferentSystem.convertFromDiffSystemTo10(numStr, systemFrom);
+                    long numIn10 = ConvertToDifferentSystem.convertFromDiffSystemTo10(numStr, systemFrom);
                     System.out.println(ConvertToDifferentSystem.convertToDiffSystemFrom10(numIn10, systemTo));
                 }
                 break;

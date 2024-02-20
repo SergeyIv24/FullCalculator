@@ -10,6 +10,7 @@ public class TestConverterSystems {
         Assertions.assertEquals(10, ConvertToDifferentSystem.convertFromDiffSystemTo10("1010", systemFrom));
         Assertions.assertEquals(0, ConvertToDifferentSystem.convertFromDiffSystemTo10("0", systemFrom));
         Assertions.assertEquals(4, ConvertToDifferentSystem.convertFromDiffSystemTo10("100", systemFrom));
+        Assertions.assertEquals(-4, ConvertToDifferentSystem.convertFromDiffSystemTo10("-100", systemFrom));
         Assertions.assertEquals(713493, ConvertToDifferentSystem.convertFromDiffSystemTo10("10101110001100010101", systemFrom));
         Assertions.assertEquals(128, ConvertToDifferentSystem.convertFromDiffSystemTo10("10000000", systemFrom));
         Assertions.assertEquals(0, ConvertToDifferentSystem.convertFromDiffSystemTo10("00000000", systemFrom));
@@ -34,7 +35,7 @@ public class TestConverterSystems {
         Assertions.assertEquals(45165415, ConvertToDifferentSystem.convertFromDiffSystemTo10("45165415", systemFrom));
         Assertions.assertEquals(212121000, ConvertToDifferentSystem.convertFromDiffSystemTo10("212121000", systemFrom));
         Assertions.assertEquals(0, ConvertToDifferentSystem.convertFromDiffSystemTo10("00000000", systemFrom));
-        //Assertions.assertEquals(-5, ConvertToDifferentSystem.convertFromDiffSystemTo10("-101", systemFrom)); //Не работает с отрицательными
+        Assertions.assertEquals(-101, ConvertToDifferentSystem.convertFromDiffSystemTo10("-101", systemFrom));
     }
 
     @Test
@@ -50,18 +51,18 @@ public class TestConverterSystems {
     @Test
     public void shouldConvertFrom26SystemTo10System() {
         int systemFrom = 26;
-        Assertions.assertEquals(1467, ConvertToDifferentSystem.convertFromDiffSystemTo10("24B", systemFrom));
+        Assertions.assertEquals(-1467, ConvertToDifferentSystem.convertFromDiffSystemTo10("-24B", systemFrom));
         Assertions.assertEquals(0, ConvertToDifferentSystem.convertFromDiffSystemTo10("0", systemFrom));
         Assertions.assertEquals(992014, ConvertToDifferentSystem.convertFromDiffSystemTo10("24BCA", systemFrom));
         Assertions.assertEquals(238358, ConvertToDifferentSystem.convertFromDiffSystemTo10("DEFG", systemFrom));
         Assertions.assertEquals(36, ConvertToDifferentSystem.convertFromDiffSystemTo10("1A", systemFrom));
-        //Assertions.assertEquals(3_225_574_966L, ConvertToDifferentSystem.convertFromDiffSystemTo10("ABCDEFG", systemFrom)); //Не работает с long
+        Assertions.assertEquals(3_225_574_966L, ConvertToDifferentSystem.convertFromDiffSystemTo10("ABCDEFG", systemFrom));
     }
 
     @Test
     public void shouldConvertFrom10SystemTo2System() {
         int systemTo = 2;
-        Assertions.assertEquals("1010", ConvertToDifferentSystem.convertToDiffSystemFrom10(10, systemTo));
+        Assertions.assertEquals("-1010", ConvertToDifferentSystem.convertToDiffSystemFrom10(-10, systemTo));
         Assertions.assertEquals("0", ConvertToDifferentSystem.convertToDiffSystemFrom10(0, systemTo));
         Assertions.assertEquals("100011011100100000", ConvertToDifferentSystem.convertToDiffSystemFrom10(145184, systemTo));
         Assertions.assertEquals("1010110110011", ConvertToDifferentSystem.convertToDiffSystemFrom10(5555, systemTo));
@@ -73,25 +74,25 @@ public class TestConverterSystems {
         Assertions.assertEquals("13", ConvertToDifferentSystem.convertToDiffSystemFrom10(10, systemTo));
         Assertions.assertEquals("0", ConvertToDifferentSystem.convertToDiffSystemFrom10(0, systemTo));
         Assertions.assertEquals("1143164", ConvertToDifferentSystem.convertToDiffSystemFrom10(145184, systemTo));
-        //Assertions.assertEquals("22124", ConvertToDifferentSystem.convertToDiffSystemFrom10(5555, systemTo)); //Лишний 0 перед ответом
+        Assertions.assertEquals("22124", ConvertToDifferentSystem.convertToDiffSystemFrom10(5555, systemTo));
     }
 
     @Test
     public void shouldConvertFrom10SystemTo16System() {
         int systemTo = 16;
-        //Assertions.assertEquals("A", ConvertToDifferentSystem.convertToDiffSystemFrom10(10, systemTo)); //Лишний 0
+        Assertions.assertEquals("A", ConvertToDifferentSystem.convertToDiffSystemFrom10(10, systemTo));
         Assertions.assertEquals("0", ConvertToDifferentSystem.convertToDiffSystemFrom10(0, systemTo));
-        //Assertions.assertEquals("23720", ConvertToDifferentSystem.convertToDiffSystemFrom10(145184, systemTo)); //Лишний 0
+        Assertions.assertEquals("23720", ConvertToDifferentSystem.convertToDiffSystemFrom10(145184, systemTo));
         Assertions.assertEquals("15B3", ConvertToDifferentSystem.convertToDiffSystemFrom10(5555, systemTo));
     }
 
     @Test
     public void shouldConvertFrom10SystemTo26System() {
         int systemTo = 26;
-        //Assertions.assertEquals("A", ConvertToDifferentSystem.convertToDiffSystemFrom10(10, systemTo)); //Лишний 0
+        Assertions.assertEquals("A", ConvertToDifferentSystem.convertToDiffSystemFrom10(10, systemTo));
         Assertions.assertEquals("0", ConvertToDifferentSystem.convertToDiffSystemFrom10(0, systemTo));
-        //Assertions.assertEquals("86K0", ConvertToDifferentSystem.convertToDiffSystemFrom10(145184, systemTo)); //Лишний 0
-        //Assertions.assertEquals("85H", ConvertToDifferentSystem.convertToDiffSystemFrom10(5555, systemTo)); //Лишний 0
+        Assertions.assertEquals("86K0", ConvertToDifferentSystem.convertToDiffSystemFrom10(145184, systemTo));
+        Assertions.assertEquals("85H", ConvertToDifferentSystem.convertToDiffSystemFrom10(5555, systemTo));
     }
 
 
