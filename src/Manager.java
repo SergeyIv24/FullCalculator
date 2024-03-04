@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.SortedMap;
 
 public class Manager {
     Scanner scanner = new Scanner(System.in);
@@ -11,23 +12,39 @@ public class Manager {
         System.out.println("2 - Перевод выражения в обратную польскую запись.");
         System.out.println("3 - Перевод в другую систему счисления.");
         System.out.println("4 - Вычислить выражение в другой СИ");
+        System.out.println("5 - Выход");
 
-        int selectionCalculator = scanner.nextInt();
+
+        int selectionCalculator = 0;
+        try {
+            if (scanner.hasNextInt()) {
+                selectionCalculator = scanner.nextInt();
+            } else {
+                throw new UserInoutException("Введено не число");
+            }
+        } catch (UserInoutException exception) {
+            System.out.println(exception.getMessage());
+            scanner.close();
+        }
+
 
         switch (selectionCalculator) {
             case 1:
                 System.out.println("Доступные операции: +, -, *, /, ^.");
                 System.out.println("Отрицательные числа вводить в скобках - (-5)");
                 System.out.println("Введите выражение: ");
+
                 String expression = scanner.next();
                 checkerInput = new CheckerInput(expression);
-                boolean checkBrackets = checkerInput.checkBrackets();
-                String exp = checkerInput.convertUsualMinusToUnaryMinus();
-                if (checkBrackets) {
+                try {
+                    checkerInput.checkInput();
+                    String exp = checkerInput.convertUsualMinusToUnaryMinus();
                     calculator = new OrdinaryCalculator(exp);
                     System.out.println("Результат: " + calculator.solvePolandNotation());
-                } else {
-                    System.out.println("Проверьте ввод и попробуйте еще раз!");
+                } catch (UserInoutException exception) {
+                    System.out.println(exception.getMessage());
+                } finally {
+                    interactionWithUser();
                 }
                 break;
 
@@ -70,14 +87,16 @@ public class Manager {
             case 4:
                 System.out.println("Введите математическое выражение для расчета:");
                 String userExp = scanner.next();
-                System.out.println("Укажите систему счисления:");
+                System.out.println("Укажите систему счисления в которой нужно получить результат:");
                 int userSystem = scanner.nextInt();
                 System.out.println(ConvertToDifferentSystem.calculateTotal(userExp, userSystem));
                 break;
-
-
-
-
+            case 5:
+                System.out.println("Выход...");
+                break;
+            default:
+                System.out.println("Неизвестная команда");
+                break;
         }
 
     }

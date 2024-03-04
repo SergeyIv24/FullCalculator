@@ -1,11 +1,25 @@
 
-
+//todo проверка наличия операторов и отсутствия букв в выражении, бросать исключение
 public class CheckerInput {
     String expression;
 
     public CheckerInput(String expression) {
         this.expression = expression;
     }
+
+    public void checkInput() {
+        char[] arrExp = expression.toCharArray();
+        for (char symbol : arrExp) {
+            if (Character.isLetter(symbol)) {
+                throw new UserInoutException("Выражение содержит буквы");
+            }
+        }
+        if (!checkBrackets()) {
+            throw new UserInoutException("Не равное количество скобок");
+        }
+    }
+
+
 
     public boolean checkBrackets() {
         char[] expressionBySymbols = expression.toCharArray();
