@@ -1,27 +1,21 @@
 
-//todo проверка наличия операторов и отсутствия букв в выражении, бросать исключение
 public class CheckerInput {
-    String expression;
 
-    public CheckerInput(String expression) {
-        this.expression = expression;
-    }
-
-    public void checkInput() {
+    public static void checkInput(String expression) {
         char[] arrExp = expression.toCharArray();
         for (char symbol : arrExp) {
             if (Character.isLetter(symbol)) {
                 throw new UserInoutException("Выражение содержит буквы");
             }
         }
-        if (!checkBrackets()) {
+        if (!checkBrackets(expression)) {
             throw new UserInoutException("Не равное количество скобок");
         }
     }
 
 
 
-    public boolean checkBrackets() {
+    public static boolean checkBrackets(String expression) {
         char[] expressionBySymbols = expression.toCharArray();
         int amountOfOpeningBrackets = 0;
         int amountOfClosingBrackets = 0;
@@ -40,7 +34,7 @@ public class CheckerInput {
         return amountOfOpeningBrackets == amountOfClosingBrackets;
     }
 
-    public String convertUsualMinusToUnaryMinus() {
+    public static String convertUsualMinusToUnaryMinus(String expression) {
         char[] expressionBySymbols = expression.toCharArray();
         for (int i = 1; i <= expressionBySymbols.length; i++) {
             if (expressionBySymbols[i-1] == '(' && expressionBySymbols[i] == '-') {

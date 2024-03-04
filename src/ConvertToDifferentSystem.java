@@ -1,7 +1,5 @@
 import java.util.HashMap;
 
-//Todo нет проверки алфавита СИ в двоичную можно записать ABCD
-
 public class ConvertToDifferentSystem {
 
     private static final HashMap<Long, Character> lettersForNumber = new HashMap<>(); //Число - буква

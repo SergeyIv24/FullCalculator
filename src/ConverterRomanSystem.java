@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class ConverterRomanSystem {
 
-    public int romanToInt(String s) {
+    public static int romanToInt(String s) {
         char[] romanNum = {'I', 'V', 'X', 'L', 'C', 'D', 'M'}; // Задается массив римский цифр
         int[] arabicNum = {1, 5, 10, 50, 100, 500, 1000}; // Массив арабских цифр
         int romanToArab = 0; // Переменная для суммирования значения римских цифр

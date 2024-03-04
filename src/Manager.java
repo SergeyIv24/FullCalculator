@@ -1,6 +1,4 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.SortedMap;
 
 public class Manager {
     Scanner scanner = new Scanner(System.in);
@@ -19,7 +17,7 @@ public class Manager {
     }
     public void interactionWithUser() {
 
-        int selectionCalculator = 0;
+        int selectionCalculator;
         while (true) {
             try {
                 userMenu();
@@ -30,20 +28,16 @@ public class Manager {
             }
         }
 
-
-
-
         switch (selectionCalculator) {
             case 1:
                 System.out.println("Доступные операции: +, -, *, /, ^.");
                 System.out.println("Отрицательные числа вводить в скобках - (-5)");
                 System.out.println("Введите выражение: ");
-
                 String expression = scanner.next();
-                checkerInput = new CheckerInput(expression);
+
                 try {
-                    checkerInput.checkInput();
-                    String exp = checkerInput.convertUsualMinusToUnaryMinus();
+                    CheckerInput.checkInput(expression);
+                    String exp = CheckerInput.convertUsualMinusToUnaryMinus(expression);
                     calculator = new OrdinaryCalculator(exp);
                     System.out.println("Результат: " + calculator.solvePolandNotation());
                 } catch (UserInoutException exception) {
@@ -57,10 +51,9 @@ public class Manager {
                 System.out.println("Введите выражение: ");
                 System.out.println("Отрицательные числа вводить в скобках - (-5)");
                 String expressionForPoland = scanner.next();
-                checkerInput = new CheckerInput(expressionForPoland);
                 try {
-                    checkerInput.checkInput();
-                    String exp1 = checkerInput.convertUsualMinusToUnaryMinus();
+                    CheckerInput.checkInput(expressionForPoland);
+                    String exp1 = CheckerInput.convertUsualMinusToUnaryMinus(expressionForPoland);
                     calculator = new OrdinaryCalculator(exp1);
                     System.out.println("Результат: " + calculator.makeInvertPolandNotation());
                 } catch (UserInoutException exception) {
@@ -71,8 +64,7 @@ public class Manager {
                 break;
 
             case 3:
-
-                int systemFrom = 0;
+                int systemFrom;
                 while (true) {
                     try {
                         System.out.println("Введите систему счисления из которой нужен перевод: ");
@@ -82,7 +74,7 @@ public class Manager {
                         System.out.println("Неверный ввод");
                     }
                 }
-                int systemTo = 0;
+                int systemTo;
                 while (true) {
                     try {
                         System.out.println("Введите систему счисления в которую нужно перевести: ");
@@ -96,20 +88,44 @@ public class Manager {
                 System.out.println("Введите число: ");
 
                 if (systemFrom == 10) {
-                    int number = scanner.nextInt();
+                    int number;
+                    while (true) {
+                        try {
+                            number = Integer.parseInt(scanner.next());
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Ошибка ввода");
+                        }
+                    }
                     System.out.println(ConvertToDifferentSystem.convertToDiffSystemFrom10(number, systemTo));
                 } else if (systemTo == 10) {
-                    String numStr = scanner.next();
-                    System.out.println(ConvertToDifferentSystem.convertFromDiffSystemTo10(numStr, systemFrom));
+
+                    try {
+                        String numStr = scanner.next();
+                        CheckerInput.checkInput(numStr);
+                        System.out.println(ConvertToDifferentSystem.convertFromDiffSystemTo10(numStr, systemFrom));
+                    } catch (UserInoutException e) {
+                        System.out.println(e.getMessage());
+                    } finally {
+                        interactionWithUser();
+                    }
+
                 } else {
-                    String numStr = scanner.next();
-                    long numIn10 = ConvertToDifferentSystem.convertFromDiffSystemTo10(numStr, systemFrom);
-                    System.out.println(ConvertToDifferentSystem.convertToDiffSystemFrom10(numIn10, systemTo));
+                    try {
+                        String numStr = scanner.next();
+                        CheckerInput.checkInput(numStr);
+                        long numIn10 = ConvertToDifferentSystem.convertFromDiffSystemTo10(numStr, systemFrom);
+                        System.out.println(ConvertToDifferentSystem.convertToDiffSystemFrom10(numIn10, systemTo));
+                    } catch (UserInoutException e) {
+                        System.out.println(e.getMessage());
+                    } finally {
+                        interactionWithUser();
+                    }
                 }
                 break;
 
             case 4:
-                int userSystem = 0;
+                int userSystem;
                 while (true) {
                     System.out.println("Укажите систему счисления в которой нужно получить результат:");
                     try {
@@ -122,15 +138,20 @@ public class Manager {
 
                 System.out.println("Введите математическое выражение для расчета (в десятичной системе:)");
                 String userExp = scanner.next();
-                checkerInput = new CheckerInput(userExp);
                 try {
-                    checkerInput.checkInput();
+                    CheckerInput.checkInput(userExp);
                     System.out.println(ConvertToDifferentSystem.calculateTotal(userExp, userSystem));
                 } catch (UserInoutException exception) {
                     System.out.println(exception.getMessage());
                 } finally {
                     interactionWithUser();
                 }
+                break;
+
+            case 6:
+                System.out.println("Введите число в римской системе счисления:");
+                String romanNumber = scanner.next();
+                System.out.println("В десятичной системе: " + ConverterRomanSystem.romanToInt(romanNumber));
                 break;
             case 7:
                 System.out.println("Выход...");

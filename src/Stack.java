@@ -10,10 +10,6 @@ public class Stack <T> {
         stackIterator = -1;
     }
 
-    public int getTopOfStack() {
-        return topOfStack;
-    }
-
     public List<T> getStack() {
         return stack;
     }
@@ -33,11 +29,6 @@ public class Stack <T> {
         stack.remove(stackIterator);
         --stackIterator;
         return stackElem;
-    }
-
-    public void clean() {
-        stack.clear();
-        stackIterator = -1;
     }
 
 }
