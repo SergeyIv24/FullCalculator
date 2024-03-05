@@ -148,6 +148,25 @@ public class Manager {
                 }
                 break;
 
+            case 5:
+                long numberToConvert;
+                while (true) {
+                    try {
+                        System.out.println("Введите число в десятичной системе:");
+                        numberToConvert = Long.parseLong(scanner.next());
+                        System.out.println("Результат: " + ConverterRomanSystem.numberToRoman(numberToConvert));
+                        break;
+                    } catch (Exception e) {
+                        System.out.println("Неверный ввод!");
+                    } finally {
+                        interactionWithUser();
+                    }
+                }
+
+
+
+                break;
+
             case 6:
                 System.out.println("Введите число в римской системе счисления:");
                 String romanNumber = scanner.next();
