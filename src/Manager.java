@@ -152,8 +152,12 @@ public class Manager {
                 long numberToConvert;
                 while (true) {
                     try {
-                        System.out.println("Введите число в десятичной системе:");
+                        System.out.println("Введите число в десятичной системе (от 1 до 3999 включительно):");
                         numberToConvert = Long.parseLong(scanner.next());
+                        if ((numberToConvert > 3999) | (numberToConvert < 1)) {
+                            System.out.println("Введенное число менее 1 или более 3999");
+                            continue;
+                        }
                         System.out.println("Результат: " + ConverterRomanSystem.numberToRoman(numberToConvert));
                         break;
                     } catch (Exception e) {
