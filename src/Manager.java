@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class Manager {
     Scanner scanner = new Scanner(System.in);
-    CheckerInput checkerInput;
     OrdinaryCalculator calculator;
 
     public void userMenu() {
@@ -16,7 +15,6 @@ public class Manager {
         System.out.println("7 - Выход");
     }
     public void interactionWithUser() {
-
         int selectionCalculator;
         while (true) {
             try {
@@ -166,9 +164,6 @@ public class Manager {
                         interactionWithUser();
                     }
                 }
-
-
-
                 break;
 
             case 6:
@@ -183,7 +178,5 @@ public class Manager {
                 System.out.println("Неизвестная команда");
                 break;
         }
-
     }
-
 }
