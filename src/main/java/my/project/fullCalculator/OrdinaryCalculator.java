@@ -1,3 +1,4 @@
+package my.project.fullCalculator;
 import java.util.HashMap;
 import java.util.Map;
 

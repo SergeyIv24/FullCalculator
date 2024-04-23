@@ -1,3 +1,5 @@
+package my.project.fullCalculator;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 

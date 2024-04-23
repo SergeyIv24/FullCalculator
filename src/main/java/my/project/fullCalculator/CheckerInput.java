@@ -1,4 +1,4 @@
-
+package my.project.fullCalculator;
 public class CheckerInput {
 
     public static void checkInput(String expression) {

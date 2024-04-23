@@ -1,3 +1,5 @@
+package my.project.fullCalculator;
+
 import java.util.HashMap;
 
 public class ConvertToDifferentSystem {
