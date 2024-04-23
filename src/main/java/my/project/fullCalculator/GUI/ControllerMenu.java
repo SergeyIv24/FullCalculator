@@ -21,9 +21,5 @@ public class ControllerMenu {
         Parent root = loaderNextScene.load();
         Scene scene = new Scene(root, 700, 700);
         stage.setScene(scene);
-
     }
-
-
-
 }
