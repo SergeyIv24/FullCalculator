@@ -1,4 +1,7 @@
 package my.project.fullCalculator;
+
+import my.project.fullCalculator.exception.UserInoutException;
+
 public class CheckerInput {
 
     public static void checkInput(String expression) {

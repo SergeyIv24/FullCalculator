@@ -1,4 +1,6 @@
 package my.project.fullCalculator;
+import my.project.fullCalculator.exception.UserInoutException;
+
 import java.util.Scanner;
 
 public class Manager {
