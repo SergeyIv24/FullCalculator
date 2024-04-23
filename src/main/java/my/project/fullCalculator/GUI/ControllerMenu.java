@@ -16,7 +16,7 @@ public class ControllerMenu {
 
     @FXML
     protected void goToSolve(ActionEvent event) throws IOException {
-        FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("Solve-expression.fxml"));
+        FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/solve-expression.fxml"));
         Stage stage = (Stage) solveExpression.getScene().getWindow();
         Parent root = loaderNextScene.load();
         Scene scene = new Scene(root, 700, 700);
