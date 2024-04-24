@@ -116,7 +116,7 @@ public class OrdinaryCalculator implements Calculator {
         String[] arrPolandExp = polExp.split(" ");
         for (int i = 0; i < arrPolandExp.length; i++) {
             if (arrPolandExp[i].contains("~")) {
-                arrPolandExp[i] = exchangeUniryMinus(arrPolandExp[i]);
+                arrPolandExp[i] = exchangeUnaryMinus(arrPolandExp[i]);
             }
             if (isNumber(arrPolandExp[i])) { //Если число, включая отрицательные
                 stackForNumbers.push(arrPolandExp[i]); //В стек
@@ -134,29 +134,6 @@ public class OrdinaryCalculator implements Calculator {
         return total;
     }
 
-    //Метод решения обратной польской нотации
-/*    public double solvePolandNotation1() {
-        String polExp = makeInvertPolandNotation(); //Вызов метода преобразования в обратную польскую нотацию
-        char[] arrPolandExp = polExp.toCharArray(); //Строку RPN в массив
-        for (int i = 0; i < arrPolandExp.length; i++) { //Цикл по элементам массива
-            if (Character.isDigit(arrPolandExp[i])) { //Если цифра
-                stackForNumbers.push(Character.toString(arrPolandExp[i])); //В стек
-            } else if (arrPolandExp[i] == '~') { //Если унарный минус в стек
-                stackForNumbers.push(Character.toString('-')); //Добавляется знак обычного минуса
-            } else if (arrPolandExp[i] == ' ') { //Если пробел
-                stackForNumbers.push(Character.toString(arrPolandExp[i])); //В стек для разделения чисел
-            } else {
-                solveExpression(arrPolandExp[i]); //Если оператор, то вычисление двух последних чисел в стеке
-            }
-        }
-        double total = 0; //Результат
-        if (stackForNumbers.getStackIterator() > -1) { //Если в стеке есть числа
-            total = makeTotal(); //Вызов метода определения общего результата
-        }
-
-        return total;
-    }*/
-
     public Double makeTotal() {
         String totalStr = "";
         while (stackForNumbers.getStackIterator() != - 1) { //Пока стек не пустой
@@ -165,18 +142,11 @@ public class OrdinaryCalculator implements Calculator {
                 totalStr = totalStr + totalSym; //Добавление к строке
             }
         }
-        //return Double.parseDouble(totalStr);
-
-/*        StringBuilder totalReverse = new StringBuilder(totalStr).reverse(); //Реверс выражения, так как pop идет с конца
-        String totalNum = totalReverse.toString();
-        return Double.parseDouble(totalNum);*/
         return Double.parseDouble(totalStr);
     }
 
 
     public void solveExpression(String mathSymbol) {
-/*        double number1 = findNumberOne(); //Вызов метода преобразования символов стека в число
-        double number2 = findNumberTwo(); //Вызов метода преобразования символов стека в число*/
         double number1 = parseNumberFromStack();
         double number2 = parseNumberFromStack();
         double result = 0;
@@ -200,84 +170,27 @@ public class OrdinaryCalculator implements Calculator {
                 result = Math.pow(number2, number1);
                 break;
         }
-
         resultStr = " " + resultStr + result;
-        //stackForNumbers.push(resultStr);
-        char[] resArr = resultStr.toCharArray();
         stackForNumbers.push(resultStr); //Возврат значения в стек
-
-
-/*        for (char num : resArr) {
-            stackForNumbers.push(Character.toString(num)); //Возврат значения в стек
-        }*/
     }
 
 
     public double parseNumberFromStack() {
-        String numberOne = "";
         if (!stackForNumbers.isEmpty()) {
             return Double.parseDouble(stackForNumbers.pop());
         }
         return 0.0;
     }
 
-    public double findNumberOne() {
-        String numberOne = "";
-        int countSpaces = 0; //Разряды числа определяются от пробела до пробела. Крайнее число имеет 2 пробела - до и после числа
-
-        while (countSpaces < 2 && stackForNumbers.getStackIterator() > -1) {
-            String symbol = stackForNumbers.pop();
-            if (OrdinaryCalculator.isNumber(symbol)) { //Если цифра //todo старый кодCharacter.isDigit(symbol) || symbol == '.'
-                numberOne = numberOne + symbol; //Добавление к выходной строке
-            } /*else if (symbol == '-') { //Если унарный минус
-                numberOne = numberOne + symbol; //Добавление к выходной строке
-            }*/ else {
-                countSpaces += 1; //Счет количества пробелов
-            }
-        }
-
-/*        StringBuilder number = new StringBuilder(numberOne);
-        number.reverse();
-        String num1 = number.toString();
-        return Double.parseDouble(num1);*/
-        return Double.parseDouble(numberOne);
-    }
-
-    public double findNumberTwo() {
-        String numberTwo = "";
-        int countSpaces = 0; //Разряды числа определяются по количеству пробелов. Для второго числа - один пробел слева.
-
-        while (countSpaces < 2 && stackForNumbers.getStackIterator() > -1) {
-            String symbol = stackForNumbers.pop();
-            if (OrdinaryCalculator.isNumber(symbol)) { //Если цифра
-                numberTwo = numberTwo + symbol; //Добавление к выходной строке
-            } /*else if (symbol == '-') { //Если унарный минус
-                numberTwo = numberTwo + symbol;
-            } */else {
-                countSpaces += 1; //Счет количества пробелов
-            }
-        }
-
-/*        StringBuilder number = new StringBuilder(numberTwo);
-        number.reverse();
-        String num2 = number.toString();
-        return Double.parseDouble(num2);*/
-        return Double.parseDouble(numberTwo);
-    }
-
-    private static String exchangeUniryMinus(String inputNum) {
+    private static String exchangeUnaryMinus(String inputNum) {
         return inputNum.replaceAll("~", "-");
     }
 
 
     //Проверка является ли строка числом
     private static boolean isNumber(String inputNum) {
-        String num = inputNum;
-        if (inputNum.contains("~")) {
-            num = exchangeUniryMinus(inputNum);
-        }
         try {
-            Double number = Double.parseDouble(num);
+            Double number = Double.parseDouble(inputNum);
             return true;
         } catch (Exception e) {
             return false;

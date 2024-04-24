@@ -27,6 +27,17 @@ public class TestReversePolandNotation {
     OrdinaryCalculator test21;
     OrdinaryCalculator test22;
     OrdinaryCalculator test23;
+    OrdinaryCalculator test24;
+    OrdinaryCalculator test25;
+    OrdinaryCalculator test26;
+    OrdinaryCalculator test27;
+    OrdinaryCalculator test28;
+    OrdinaryCalculator test29;
+    OrdinaryCalculator test30;
+    OrdinaryCalculator test31;
+    OrdinaryCalculator test32;
+    OrdinaryCalculator test33;
+
 
 
     @BeforeEach
@@ -53,6 +64,12 @@ public class TestReversePolandNotation {
         test10 = new OrdinaryCalculator(expression10);
         String expression11 = "2*1+(2*(1+8)/3)/3*9*((1+2)*3/1)";
         test11 = new OrdinaryCalculator(expression11);
+        String expression31 = "(-2.1)+(-2.2)+(-8.5)+(-7.3)-(-12.2)*15.2";
+        test31 = new OrdinaryCalculator(expression31);
+        String expression32 = "((2.5+2.5)*(2.5+2.5)/2.5)";
+        test32 = new OrdinaryCalculator(expression32);
+        String expression33 = "(1.2)+(2.1)-(-3.2)*15.1+(-2.2)";
+        test33 = new OrdinaryCalculator(expression33);
     }
 
     @Test
@@ -68,7 +85,11 @@ public class TestReversePolandNotation {
         Assertions.assertEquals("2 1 * 2 1 2 + * 3 / 3 9 * / +", test9.makeInvertPolandNotation());
         Assertions.assertEquals("2 1 * 2 1 + / 2 1 / / 2 3 * 3 / *", test10.makeInvertPolandNotation());
         Assertions.assertEquals("2 1 * 2 1 8 + * 3 / 3 / 9 * 1 2 + 3 * 1 / * +", test11.makeInvertPolandNotation());
+        Assertions.assertEquals("2.1 - 2.2 - + 8.5 - + 7.3 - + 12.2 - 15.2 * -", test31.makeInvertPolandNotation());
+        Assertions.assertEquals("2.5 2.5 + 2.5 2.5 + * 2.5 /", test32.makeInvertPolandNotation());
+        Assertions.assertEquals("1.2 2.1 + 3.2 - 15.1 * - 2.2 - +", test33.makeInvertPolandNotation());
     }
+
     @BeforeEach
     public void createCalculatorForNumbersMoreThen10() {
         String expression1 = "((10+20)*(30+40))+10";
@@ -95,8 +116,8 @@ public class TestReversePolandNotation {
         test22 = new OrdinaryCalculator(expression11);
         String expression12 = "~8-~3";
         test23 = new OrdinaryCalculator(expression12);
-
     }
+
     @Test
     public void shouldReturnCorrectPolishNotationForNumbersMoreThen10() {
         Assertions.assertEquals("10 20 + 30 40 + * 10 +", test12.makeInvertPolandNotation());
@@ -139,6 +160,36 @@ public class TestReversePolandNotation {
         Assertions.assertEquals(4096, test21.solvePolandNotation());
         Assertions.assertEquals(-4, test22.solvePolandNotation());
         Assertions.assertEquals(-5, test23.solvePolandNotation());
+    }
+
+    @BeforeEach
+    public void createCalculatorForFloatNumbers() {
+        String expression24 = "1.2+1.2";
+        test24 = new OrdinaryCalculator(expression24);
+        String expression25 = "(1.2+2.123)+3*2.5-51.2";
+        test25 = new OrdinaryCalculator(expression25);
+        String expression26 = "43.3/21.1+23.12^3.3";
+        test26 = new OrdinaryCalculator(expression26);
+        String expression27 = "1.0^1^1^1.0";
+        test27 = new OrdinaryCalculator(expression27);
+        String expression28 = "-30.23-65.32";
+        test28 = new OrdinaryCalculator(expression28);
+        String expression29 = "(1.2)+(2.1)-(~3.2)*15.1+(~2.2)";
+        test29 = new OrdinaryCalculator(expression29);
+        String expression30 = "0.0+0.0+900/23.12";
+        test30 = new OrdinaryCalculator(expression30);
+    }
+
+    @Test
+    public void shouldSolveFloatExpression() {
+        Assertions.assertEquals(2.4, test24.solvePolandNotation());
+        Assertions.assertEquals(-40.377, test25.solvePolandNotation());
+        Assertions.assertEquals(31709.394217448433, test26.solvePolandNotation());
+        Assertions.assertEquals(1.0, test27.solvePolandNotation());
+        Assertions.assertEquals(-95.55, test28.solvePolandNotation());
+        Assertions.assertEquals(49.419999999999995, test29.solvePolandNotation());
+        Assertions.assertEquals(38.92733564013841, test30.solvePolandNotation());
+
     }
 
 }
