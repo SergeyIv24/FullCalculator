@@ -1,4 +1,4 @@
-package my.project.fullCalculator;
+package my.project.fullCalculator.calculators;
 
 import my.project.fullCalculator.exception.UserInoutException;
 

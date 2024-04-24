@@ -18,6 +18,8 @@ public class numbersId {
     public static final String MULTIPLICATION = "multiplication";
     public static final String DIVISION = "division";
     public static final String SOLUTION = "solution";
+    public static final String CLEAR = "clear";
+    public static final String DELETE_LAST = "deleteLast";
 
 
 }

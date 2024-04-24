@@ -9,4 +9,6 @@ module my.project.fullCalculator {
     opens my.project.fullCalculator.GUI to javafx.fxml;
     exports my.project.fullCalculator.exception;
     opens my.project.fullCalculator.exception to javafx.fxml;
+    exports my.project.fullCalculator.calculators;
+    opens my.project.fullCalculator.calculators to javafx.fxml;
 }

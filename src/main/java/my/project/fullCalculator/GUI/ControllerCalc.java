@@ -3,23 +3,24 @@ package my.project.fullCalculator.GUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import my.project.fullCalculator.GUI.numbersId;
+import my.project.fullCalculator.calculators.CheckerInput;
+import my.project.fullCalculator.calculators.OrdinaryCalculator;
 
 import java.io.IOException;
 
 public class ControllerCalc {
 
     @FXML
-    private Button one;
+    private TextField fieldForExpression;
 
     @FXML
-    private TextField fieldForExpression;
+    private Label result;
 
     @FXML
     protected void pressingEveryNumber(ActionEvent event) throws IOException {
         Button btn = (Button) event.getSource();
-        System.out.println(btn.getId());
 
         if (btn.getId().equals(numbersId.ONE)) {
             fieldForExpression.setText(fieldForExpression.getText() + "1");
@@ -61,9 +62,52 @@ public class ControllerCalc {
             fieldForExpression.setText(fieldForExpression.getText() + "0");
         }
 
+        if (btn.getId().equals(numbersId.OPENED_BRACKET)) {
+            fieldForExpression.setText(fieldForExpression.getText() + ")");
+        }
+
+        if (btn.getId().equals(numbersId.CLOSED_BRACKET)) {
+            fieldForExpression.setText(fieldForExpression.getText() + "(");
+        }
+
+        if (btn.getId().equals(numbersId.PLUS)) {
+            fieldForExpression.setText(fieldForExpression.getText() + "+");
+        }
+
+        if (btn.getId().equals(numbersId.MINUS)) {
+            fieldForExpression.setText(fieldForExpression.getText() + "-");
+        }
+
+        if (btn.getId().equals(numbersId.MULTIPLICATION)) {
+            fieldForExpression.setText(fieldForExpression.getText() + "*");
+        }
+
+        if (btn.getId().equals(numbersId.DIVISION)) {
+            fieldForExpression.setText(fieldForExpression.getText() + "/");
+        }
+
+        if (btn.getId().equals(numbersId.SOLUTION)) {
+            String exp = fieldForExpression.getText();
+            result.setText(solveExp(exp));
+        }
 
 
+        if (btn.getId().equals(numbersId.CLEAR)) {
+            fieldForExpression.setText("");
+            result.setText("");
+        }
+
+        if (btn.getId().equals(numbersId.DELETE_LAST)) {
+            StringBuilder stringBuilder = new StringBuilder(fieldForExpression.getText());
+            stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+            fieldForExpression.setText(stringBuilder.toString());
+        }
     }
 
+    private String solveExp(String exp) {
+        CheckerInput.checkInput(exp);
+        OrdinaryCalculator calculator = new OrdinaryCalculator(CheckerInput.convertUsualMinusToUnaryMinus(exp));
+        return "" + calculator.solvePolandNotation();
+    }
 
 }
