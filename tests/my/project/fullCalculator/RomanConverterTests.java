@@ -1,3 +1,6 @@
+package my.project.fullCalculator;
+
+import my.project.fullCalculator.calculators.ConverterRomanSystem;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

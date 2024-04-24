@@ -4,21 +4,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="my.project.fullCalculator.GUI.ControllerCalc">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="styleMenu.css" stylesheets="@styleMenu.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="my.project.fullCalculator.GUI.ControllerCalc">
     <children>
-        <MenuButton mnemonicParsing="false" text="MenuButton">
+        <MenuButton fx:id="menu" mnemonicParsing="false" text="| | |">
             <items>
-                <Menu mnemonicParsing="false" text="Unspecified Menu">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Action 1" />
-                    </items>
-                </Menu>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
+                <MenuItem fx:id="back" mnemonicParsing="false" onAction="#goBack" text="В главное меню" />
+                <MenuItem fx:id="toConverter" mnemonicParsing="false" text="Конвертер систем счисления" />
             </items>
         </MenuButton>
-        <TextField fx:id="fieldForExpression" prefHeight="142.0" prefWidth="600.0" />
-      <Label fx:id="result" prefHeight="109.0" prefWidth="600.0" />
+        <TextField fx:id="fieldForExpression" prefHeight="100.0" prefWidth="600.0" />
+      <Label fx:id="result" alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="600.0" text="Здесь будет результат" />
         <GridPane hgap="6" prefHeight="300" prefWidth="600" vgap="4">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
@@ -35,27 +30,33 @@
                 <RowConstraints maxHeight="40.0" minHeight="0.0" prefHeight="60" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Button fx:id="closedBracket" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="(" />
+                <Button fx:id="closedBracket" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="(">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin></Button>
                 <Button fx:id="openedBracket" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text=")" GridPane.columnIndex="1" />
-                <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="x2" GridPane.columnIndex="2" />
-                <Button fx:id="division" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="/" GridPane.columnIndex="3" />
-                <Button fx:id="seven" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="7" GridPane.rowIndex="1" />
-                <Button fx:id="eight" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="8" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <Button fx:id="nine" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="9" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                <Button fx:id="multiplication" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="*" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                <Button fx:id="four" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="4" GridPane.rowIndex="2" />
-                <Button fx:id="one" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="1" GridPane.rowIndex="3" />
-                <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="C" GridPane.rowIndex="4" />
-                <Button fx:id="five" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="5" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <Button fx:id="two" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="2" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <Button fx:id="zero" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <Button fx:id="six" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                <Button fx:id="three" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="3" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                <Button fx:id="minus" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="-" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="," GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                <Button fx:id="plus" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="+" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                <Button fx:id="solution" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="=" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <Button fx:id="deleteLast" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="&lt;-" GridPane.rowIndex="5" />
+                <Button disable="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="x2" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <Button fx:id="division" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="/" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                <Button fx:id="seven" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="7" GridPane.rowIndex="2" />
+                <Button fx:id="eight" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="8" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Button fx:id="nine" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="9" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <Button fx:id="multiplication" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="X" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                <Button fx:id="four" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="4" GridPane.rowIndex="3" />
+                <Button fx:id="one" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="1" GridPane.rowIndex="4" />
+                <Button fx:id="clear" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="C" GridPane.rowIndex="1" />
+                <Button fx:id="five" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="5" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <Button fx:id="two" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="2" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <Button fx:id="zero" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <Button fx:id="six" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="6" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                <Button fx:id="three" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="3" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                <Button fx:id="minus" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="-" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="," GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                <Button fx:id="plus" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="+" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                <Button fx:id="solution" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="=" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Button fx:id="deleteLast" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="&lt;-" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button disable="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="\\%" GridPane.rowIndex="5" />
+            <Button disable="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="Lg" GridPane.columnIndex="2" />
+            <Button disable="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="Ln" GridPane.columnIndex="3" />
             </children>
             <VBox.margin>
                 <Insets left="10.0" right="10.0" top="40.0" />

@@ -1,4 +1,4 @@
-package java.my.project.fullCalculator;
+package my.project.fullCalculator;
 
 import my.project.fullCalculator.calculators.OrdinaryCalculator;
 import org.junit.jupiter.api.*;

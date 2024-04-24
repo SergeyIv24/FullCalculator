@@ -1,7 +1,27 @@
 .root{
-    -fx-background-color:"#f2ebeb"
+    -fx-background-color:"#f2f2f0";
+}
+
+#fieldForExpression{
+    -fx-background-color:"#f2f2f0";
+    -fx-border-color: Black;
+    -fx-font-size: 20px;
+
+}
+
+#result{
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+
 }
 
 .button{
+    -fx-background-color: "#ffffff";
     -fx-font-size:14pt;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, gray, 4px, 0, 0, 0);
+}
+
+.button:hover{
+    -fx-background-color: "#e8eaed";
 }

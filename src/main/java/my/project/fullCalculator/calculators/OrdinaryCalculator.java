@@ -26,11 +26,11 @@ public class OrdinaryCalculator implements Calculator {
         stackForNumbers = new Stack<>(); //Объект стек, для хранения чисел
     }
 
-    //Проверка на двухзначные и n - значные числа
+    //Проверка на двухзначные и n - значные числа //todo проверка на дробное число
     public int makeNum(char[] exp, int startIndex) { // Принимает индекс символа из выражения, который нужно проверить
         int indexContinue = 0; //Стартовое значение индекса для возврата
         for (int i = startIndex; i < exp.length; i++) { //Цикл по математическому выражению
-            if (Character.isDigit(exp[i])) { //Если цифра
+            if (Character.isDigit(exp[i]) ) { //Если цифра|| (exp[i] == ',')
                polandExpression += exp[i]; //Добавление к выходной строке
                 indexContinue = i; //Индекс проверенного элемента
             } else { //Если не цифра, завершение цикла, возврат индекса для продолжения цикла по выражению

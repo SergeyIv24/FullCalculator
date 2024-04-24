@@ -2,9 +2,11 @@ package my.project.fullCalculator.GUI;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 import my.project.fullCalculator.calculators.CheckerInput;
 import my.project.fullCalculator.calculators.OrdinaryCalculator;
 
@@ -17,6 +19,12 @@ public class ControllerCalc {
 
     @FXML
     private Label result;
+
+    @FXML
+    private MenuItem back;
+
+    @FXML
+    private MenuButton menu;
 
     @FXML
     protected void pressingEveryNumber(ActionEvent event) throws IOException {
@@ -63,6 +71,9 @@ public class ControllerCalc {
         }
 
         if (btn.getId().equals(numbersId.OPENED_BRACKET)) {
+            if (fieldForExpression.getText().isEmpty()) {
+                return;
+            }
             fieldForExpression.setText(fieldForExpression.getText() + ")");
         }
 
@@ -71,18 +82,49 @@ public class ControllerCalc {
         }
 
         if (btn.getId().equals(numbersId.PLUS)) {
+
+            if (fieldForExpression.getText().isEmpty()) {
+                fieldForExpression.setText("0");
+            }
+
+            if (isPressingProhibited(fieldForExpression.getText())) {
+                return;
+            }
             fieldForExpression.setText(fieldForExpression.getText() + "+");
         }
 
         if (btn.getId().equals(numbersId.MINUS)) {
+            if (fieldForExpression.getText().isEmpty()) {
+                fieldForExpression.setText("0");
+            }
+
+            if (isPressingProhibited(fieldForExpression.getText())) {
+                return;
+            }
             fieldForExpression.setText(fieldForExpression.getText() + "-");
         }
 
         if (btn.getId().equals(numbersId.MULTIPLICATION)) {
+
+            if (fieldForExpression.getText().isEmpty()) {
+                fieldForExpression.setText("0");
+            }
+
+            if (isPressingProhibited(fieldForExpression.getText())) {
+                return;
+            }
             fieldForExpression.setText(fieldForExpression.getText() + "*");
         }
 
         if (btn.getId().equals(numbersId.DIVISION)) {
+
+            if (fieldForExpression.getText().isEmpty()) {
+                fieldForExpression.setText("0");
+            }
+
+            if (isPressingProhibited(fieldForExpression.getText())) {
+                return;
+            }
             fieldForExpression.setText(fieldForExpression.getText() + "/");
         }
 
@@ -109,5 +151,23 @@ public class ControllerCalc {
         OrdinaryCalculator calculator = new OrdinaryCalculator(CheckerInput.convertUsualMinusToUnaryMinus(exp));
         return "" + calculator.solvePolandNotation();
     }
+
+    private boolean isPressingProhibited(String exp) {
+        return isMathOperator(exp.substring(exp.length() - 1));
+    }
+
+    private boolean isMathOperator(String symbol) {
+        return symbol.equals("+") || symbol.equals("-") || symbol.equals("*") || symbol.equals("/");
+    }
+
+    @FXML
+    protected void goBack(ActionEvent event) throws IOException {
+        FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/menu-view.fxml"));
+        Stage stage = (Stage) menu.getScene().getWindow();
+        Parent root = loaderNextScene.load();
+        Scene scene = new Scene(root, 700, 700);
+        stage.setScene(scene);
+    }
+
 
 }

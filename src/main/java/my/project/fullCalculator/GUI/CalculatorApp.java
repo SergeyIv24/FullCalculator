@@ -16,7 +16,8 @@ public class CalculatorApp extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoaderMenu = new FXMLLoader(CalculatorApp.class.getResource("/menu-view.fxml")); //Загрузка XML файла
         Parent rootNode = fxmlLoaderMenu.load(); //Корневой узел
-        Scene sceneMenu = new Scene(rootNode, 700, 700); // Создание сцены по корневому узлу
+        Scene sceneMenu = new Scene(rootNode, 500, 500); // Создание сцены по корневому узлу
+
         String pathToCss = this.getClass().getResource("/styleMenu.css").toExternalForm();
         sceneMenu.getStylesheets().add(pathToCss);
 
@@ -30,13 +31,6 @@ public class CalculatorApp extends Application {
         stage.setScene(sceneMenu);
         stage.show();
 
-
-
-/*        FXMLLoader fxmlLoader = new FXMLLoader(CalculatorApp.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
-        stage.show();*/
     }
 
     public static void main(String[] args) {
