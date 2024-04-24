@@ -45,7 +45,7 @@ public class Manager {
                     String exp = CheckerInput.convertUsualMinusToUnaryMinus(expression);
                     calculator = new OrdinaryCalculator(exp);
                     System.out.println("Результат: " + calculator.solvePolandNotation());
-                } catch (UserInoutException exception) {
+                } catch (Exception exception) {
                     System.out.println(exception.getMessage());
                 } finally {
                     interactionWithUser();

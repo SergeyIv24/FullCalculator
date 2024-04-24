@@ -125,8 +125,8 @@ public class TestReversePolandNotation {
         Assertions.assertEquals(19, test6.solvePolandNotation());
         Assertions.assertEquals(6, test7.solvePolandNotation());
         Assertions.assertEquals(240, test8.solvePolandNotation());
-        Assertions.assertEquals(2, test9.solvePolandNotation());
-        Assertions.assertEquals(0, test10.solvePolandNotation());
+        Assertions.assertEquals(2.074074074074074, test9.solvePolandNotation());
+        Assertions.assertEquals(0.6666666666666666, test10.solvePolandNotation());
         Assertions.assertEquals(164, test11.solvePolandNotation());
         Assertions.assertEquals(2110, test12.solvePolandNotation());
         Assertions.assertEquals(334854, test13.solvePolandNotation());

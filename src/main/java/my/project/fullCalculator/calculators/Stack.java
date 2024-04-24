@@ -33,4 +33,8 @@ public class Stack <T> {
         return stackElem;
     }
 
+    public boolean isEmpty() {
+        return stack.isEmpty();
+    }
+
 }

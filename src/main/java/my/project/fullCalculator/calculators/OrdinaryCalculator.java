@@ -7,7 +7,7 @@ public class OrdinaryCalculator implements Calculator {
     private final char[] mathSymbols;
     private final Map<Character, Integer> mathSymbolPriority;
     private final Stack<Character> stackForChar;
-    private final Stack<Character> stackForNumbers;
+    private final Stack<String> stackForNumbers; //todo изменить на стек для строк
     private String polandExpression = ""; //Выходная строка в польской нотации
 
     public OrdinaryCalculator(String expression) {
@@ -30,7 +30,7 @@ public class OrdinaryCalculator implements Calculator {
     public int makeNum(char[] exp, int startIndex) { // Принимает индекс символа из выражения, который нужно проверить
         int indexContinue = 0; //Стартовое значение индекса для возврата
         for (int i = startIndex; i < exp.length; i++) { //Цикл по математическому выражению
-            if (Character.isDigit(exp[i]) ) { //Если цифра|| (exp[i] == ',')
+            if (Character.isDigit(exp[i]) || (exp[i] == '.')) { //Если цифра
                polandExpression += exp[i]; //Добавление к выходной строке
                 indexContinue = i; //Индекс проверенного элемента
             } else { //Если не цифра, завершение цикла, возврат индекса для продолжения цикла по выражению
@@ -111,22 +111,22 @@ public class OrdinaryCalculator implements Calculator {
         stackForChar.push(symbol); //Если все условия не сработали добавление в стек
     }
 
-    //Метод решения обратной польской нотации
-    public long solvePolandNotation() {
+    public double solvePolandNotation() {
         String polExp = makeInvertPolandNotation(); //Вызов метода преобразования в обратную польскую нотацию
-        char[] arrPolandExp = polExp.toCharArray(); //Строку RPN в массив
-        for (int i = 0; i < arrPolandExp.length; i++) { //Цикл по элементам массива
-            if (Character.isDigit(arrPolandExp[i])) { //Если цифра
+        String[] arrPolandExp = polExp.split(" ");
+        for (int i = 0; i < arrPolandExp.length; i++) {
+            if (arrPolandExp[i].contains("~")) {
+                arrPolandExp[i] = exchangeUniryMinus(arrPolandExp[i]);
+            }
+            if (isNumber(arrPolandExp[i])) { //Если число, включая отрицательные
                 stackForNumbers.push(arrPolandExp[i]); //В стек
-            } else if (arrPolandExp[i] == '~') { //Если унарный минус в стек
-                stackForNumbers.push('-'); //Добавляется знак обычного минуса
-            } else if (arrPolandExp[i] == ' ') { //Если пробел
+            } else if (arrPolandExp[i].isEmpty() || arrPolandExp[i].isBlank()) { //Если пробел //todo проверка пробелов больше не нужна
                 stackForNumbers.push(arrPolandExp[i]); //В стек для разделения чисел
             } else {
-                solveExpression(arrPolandExp[i]); //Если оператор, то вычисление двух последних чисел в стеке
+                solveExpression(arrPolandExp[i]);
             }
         }
-        long total = 0; //Результат
+        double total = 0; //Результат
         if (stackForNumbers.getStackIterator() > -1) { //Если в стеке есть числа
             total = makeTotal(); //Вызов метода определения общего результата
         }
@@ -134,95 +134,154 @@ public class OrdinaryCalculator implements Calculator {
         return total;
     }
 
-    public long makeTotal() {
+    //Метод решения обратной польской нотации
+/*    public double solvePolandNotation1() {
+        String polExp = makeInvertPolandNotation(); //Вызов метода преобразования в обратную польскую нотацию
+        char[] arrPolandExp = polExp.toCharArray(); //Строку RPN в массив
+        for (int i = 0; i < arrPolandExp.length; i++) { //Цикл по элементам массива
+            if (Character.isDigit(arrPolandExp[i])) { //Если цифра
+                stackForNumbers.push(Character.toString(arrPolandExp[i])); //В стек
+            } else if (arrPolandExp[i] == '~') { //Если унарный минус в стек
+                stackForNumbers.push(Character.toString('-')); //Добавляется знак обычного минуса
+            } else if (arrPolandExp[i] == ' ') { //Если пробел
+                stackForNumbers.push(Character.toString(arrPolandExp[i])); //В стек для разделения чисел
+            } else {
+                solveExpression(arrPolandExp[i]); //Если оператор, то вычисление двух последних чисел в стеке
+            }
+        }
+        double total = 0; //Результат
+        if (stackForNumbers.getStackIterator() > -1) { //Если в стеке есть числа
+            total = makeTotal(); //Вызов метода определения общего результата
+        }
+
+        return total;
+    }*/
+
+    public Double makeTotal() {
         String totalStr = "";
         while (stackForNumbers.getStackIterator() != - 1) { //Пока стек не пустой
-            char totalSym = stackForNumbers.pop(); //Выталкивание из стека
-            if (totalSym != ' ') { //Если не пробел
+            String totalSym = stackForNumbers.pop().trim(); //Выталкивание из стека
+            if (!totalSym.isBlank()) { //Если не пробел totalSym != ' '
                 totalStr = totalStr + totalSym; //Добавление к строке
             }
         }
+        //return Double.parseDouble(totalStr);
 
-        StringBuilder totalReverse = new StringBuilder(totalStr).reverse(); //Реверс выражения, так как pop идет с конца
+/*        StringBuilder totalReverse = new StringBuilder(totalStr).reverse(); //Реверс выражения, так как pop идет с конца
         String totalNum = totalReverse.toString();
-
-        return Long.parseLong(totalNum);
+        return Double.parseDouble(totalNum);*/
+        return Double.parseDouble(totalStr);
     }
 
 
-    public void solveExpression(char mathSymbol) {
-        long number1 = findNumberOne(); //Вызов метода преобразования символов стека в число
-        long number2 = findNumberTwo(); //Вызов метода преобразования символов стека в число
-        long result = 0;
+    public void solveExpression(String mathSymbol) {
+/*        double number1 = findNumberOne(); //Вызов метода преобразования символов стека в число
+        double number2 = findNumberTwo(); //Вызов метода преобразования символов стека в число*/
+        double number1 = parseNumberFromStack();
+        double number2 = parseNumberFromStack();
+        double result = 0;
         String resultStr = "";
 
         //Переключение математической операции
         switch (mathSymbol) {
-            case '+':
+            case "+":
                 result = number1 + number2;
                 break;
-            case '-':
+            case "-":
                 result = number2 - number1;
                 break;
-            case '*':
+            case "*":
                 result = number1 * number2;
                 break;
-            case '/':
+            case "/":
                 result = number2 / number1;
                 break;
-            case '^':
-                result = (long) Math.pow(number2, number1);
+            case "^":
+                result = Math.pow(number2, number1);
                 break;
         }
 
         resultStr = " " + resultStr + result;
+        //stackForNumbers.push(resultStr);
         char[] resArr = resultStr.toCharArray();
+        stackForNumbers.push(resultStr); //Возврат значения в стек
 
-        for (char num : resArr) {
-            stackForNumbers.push(num); //Возврат значения в стек
-        }
+
+/*        for (char num : resArr) {
+            stackForNumbers.push(Character.toString(num)); //Возврат значения в стек
+        }*/
     }
 
-    public long findNumberOne() {
+
+    public double parseNumberFromStack() {
+        String numberOne = "";
+        if (!stackForNumbers.isEmpty()) {
+            return Double.parseDouble(stackForNumbers.pop());
+        }
+        return 0.0;
+    }
+
+    public double findNumberOne() {
         String numberOne = "";
         int countSpaces = 0; //Разряды числа определяются от пробела до пробела. Крайнее число имеет 2 пробела - до и после числа
 
         while (countSpaces < 2 && stackForNumbers.getStackIterator() > -1) {
-            char symbol = stackForNumbers.pop();
-            if (Character.isDigit(symbol)) { //Если цифра
+            String symbol = stackForNumbers.pop();
+            if (OrdinaryCalculator.isNumber(symbol)) { //Если цифра //todo старый кодCharacter.isDigit(symbol) || symbol == '.'
                 numberOne = numberOne + symbol; //Добавление к выходной строке
-            } else if (symbol == '-') { //Если унарный минус
+            } /*else if (symbol == '-') { //Если унарный минус
                 numberOne = numberOne + symbol; //Добавление к выходной строке
-            } else {
+            }*/ else {
                 countSpaces += 1; //Счет количества пробелов
             }
         }
 
-        StringBuilder number = new StringBuilder(numberOne);
+/*        StringBuilder number = new StringBuilder(numberOne);
         number.reverse();
         String num1 = number.toString();
-        return Long.parseLong(num1);
+        return Double.parseDouble(num1);*/
+        return Double.parseDouble(numberOne);
     }
 
-    public long findNumberTwo() {
+    public double findNumberTwo() {
         String numberTwo = "";
         int countSpaces = 0; //Разряды числа определяются по количеству пробелов. Для второго числа - один пробел слева.
 
-        while (countSpaces < 1 && stackForNumbers.getStackIterator() > -1) {
-            char symbol = stackForNumbers.pop();
-            if (Character.isDigit(symbol)) { //Если цифра
+        while (countSpaces < 2 && stackForNumbers.getStackIterator() > -1) {
+            String symbol = stackForNumbers.pop();
+            if (OrdinaryCalculator.isNumber(symbol)) { //Если цифра
                 numberTwo = numberTwo + symbol; //Добавление к выходной строке
-            } else if (symbol == '-') { //Если унарный минус
+            } /*else if (symbol == '-') { //Если унарный минус
                 numberTwo = numberTwo + symbol;
-            } else {
+            } */else {
                 countSpaces += 1; //Счет количества пробелов
             }
         }
 
-        StringBuilder number = new StringBuilder(numberTwo);
+/*        StringBuilder number = new StringBuilder(numberTwo);
         number.reverse();
         String num2 = number.toString();
-
-        return Long.parseLong(num2);
+        return Double.parseDouble(num2);*/
+        return Double.parseDouble(numberTwo);
     }
+
+    private static String exchangeUniryMinus(String inputNum) {
+        return inputNum.replaceAll("~", "-");
+    }
+
+
+    //Проверка является ли строка числом
+    private static boolean isNumber(String inputNum) {
+        String num = inputNum;
+        if (inputNum.contains("~")) {
+            num = exchangeUniryMinus(inputNum);
+        }
+        try {
+            Double number = Double.parseDouble(num);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }

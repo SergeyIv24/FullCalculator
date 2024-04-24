@@ -25,7 +25,7 @@ public class ConvertToDifferentSystem {
 
 
     //Перевод в любую систему счисления из 10
-    public static String convertToDiffSystemFrom10(long number10, int systemTo) {
+    public static String convertToDiffSystemFrom10(double number10, int systemTo) {
 
        boolean isNegative = false;
         if (number10 < 0) {
@@ -42,7 +42,7 @@ public class ConvertToDifferentSystem {
 
         }
 
-        long surplus;
+        double surplus;
 
         while (number10 >= systemTo) {
             surplus =  (number10 % systemTo);
