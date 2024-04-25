@@ -81,6 +81,10 @@ public class ControllerCalc {
             fieldForExpression.setText(fieldForExpression.getText() + "(");
         }
 
+        if (btn.getId().equals(numbersId.POINT)) {
+            fieldForExpression.setText(fieldForExpression.getText() + ".");
+        }
+
         if (btn.getId().equals(numbersId.PLUS)) {
 
             if (fieldForExpression.getText().isEmpty()) {

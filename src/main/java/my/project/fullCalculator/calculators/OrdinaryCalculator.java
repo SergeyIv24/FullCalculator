@@ -7,7 +7,7 @@ public class OrdinaryCalculator implements Calculator {
     private final char[] mathSymbols;
     private final Map<Character, Integer> mathSymbolPriority;
     private final Stack<Character> stackForChar;
-    private final Stack<String> stackForNumbers; //todo изменить на стек для строк
+    private final Stack<String> stackForNumbers;
     private String polandExpression = ""; //Выходная строка в польской нотации
 
     public OrdinaryCalculator(String expression) {
@@ -120,8 +120,6 @@ public class OrdinaryCalculator implements Calculator {
             }
             if (isNumber(arrPolandExp[i])) { //Если число, включая отрицательные
                 stackForNumbers.push(arrPolandExp[i]); //В стек
-            } else if (arrPolandExp[i].isEmpty() || arrPolandExp[i].isBlank()) { //Если пробел //todo проверка пробелов больше не нужна
-                stackForNumbers.push(arrPolandExp[i]); //В стек для разделения чисел
             } else {
                 solveExpression(arrPolandExp[i]);
             }

@@ -50,7 +50,7 @@
                 <Button fx:id="six" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="6" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                 <Button fx:id="three" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="3" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                 <Button fx:id="minus" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="-" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="," GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                <Button fx:id="point" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="." GridPane.columnIndex="2" GridPane.rowIndex="5" />
                 <Button fx:id="plus" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="+" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                 <Button fx:id="solution" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="=" GridPane.columnIndex="3" GridPane.rowIndex="5" />
             <Button fx:id="deleteLast" mnemonicParsing="false" onAction="#pressingEveryNumber" prefHeight="40.0" prefWidth="150.0" text="&lt;-" GridPane.columnIndex="1" GridPane.rowIndex="1" />

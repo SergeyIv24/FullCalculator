@@ -25,7 +25,7 @@ public class ConvertToDifferentSystem {
 
 
     //Перевод в любую систему счисления из 10
-    public static String convertToDiffSystemFrom10(double number10, int systemTo) {
+    public static String convertToDiffSystemFrom10(long number10, int systemTo) {
 
        boolean isNegative = false;
         if (number10 < 0) {
@@ -42,10 +42,10 @@ public class ConvertToDifferentSystem {
 
         }
 
-        double surplus;
+        long surplus;
 
         while (number10 >= systemTo) {
-            surplus =  (number10 % systemTo);
+            surplus =  (int) (number10 % systemTo);
             number10 = number10 / systemTo;
 
             if (systemTo > 10) { //Если СИ больше 10
@@ -123,6 +123,6 @@ public class ConvertToDifferentSystem {
     public static String calculateTotal(String exp, int systemFrom) {
         String expression = convertExpressionInSystem10(exp, systemFrom);
         OrdinaryCalculator calculator = new OrdinaryCalculator(expression);
-        return convertToDiffSystemFrom10(calculator.solvePolandNotation(), systemFrom); //Вычисление, возврат в пользовательской СИ
+        return convertToDiffSystemFrom10((int) calculator.solvePolandNotation(), systemFrom); //Вычисление, возврат в пользовательской СИ
     }
 }
