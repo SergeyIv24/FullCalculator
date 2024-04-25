@@ -19,7 +19,7 @@
             </VBox.margin></Label>
         <Button fx:id="solveExpression" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goToSolve" onDragDetected="#goToSolve" prefHeight="50.0" prefWidth="330.0" text="Вычислить значение выражения" />
         <Button fx:id="converter" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goToConverter" prefHeight="50.0" prefWidth="330.0" text="Конвертер систем счисления" />
-        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="330.0" text="Римская система счисления" />
+        <Button fx:id="romanConverter" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goToRomanConverter" prefHeight="50.0" prefWidth="330.0" text="Римская система счисления" />
     </children>
     <opaqueInsets>
         <Insets />

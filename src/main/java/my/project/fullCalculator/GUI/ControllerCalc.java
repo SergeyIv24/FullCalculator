@@ -21,9 +21,6 @@ public class ControllerCalc {
     private Label result;
 
     @FXML
-    private MenuItem back;
-
-    @FXML
     private MenuButton menu;
 
     @FXML

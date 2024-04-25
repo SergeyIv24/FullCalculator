@@ -18,6 +18,9 @@ public class ControllerMenu {
     private Button converter;
 
     @FXML
+    private Button romanConverter;
+
+    @FXML
     protected void goToSolve(ActionEvent event) throws IOException {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/solve-expression.fxml"));
         Stage stage = (Stage) solveExpression.getScene().getWindow();
@@ -29,6 +32,15 @@ public class ControllerMenu {
     @FXML
     protected void goToConverter(ActionEvent event) throws IOException {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/system-converter.fxml"));
+        Stage stage = (Stage) converter.getScene().getWindow();
+        Parent root = loaderNextScene.load();
+        Scene scene = new Scene(root, 700, 700);
+        stage.setScene(scene);
+    }
+
+    @FXML
+    protected void goToRomanConverter(ActionEvent event) throws IOException {
+        FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/poman-converter.fxml"));
         Stage stage = (Stage) converter.getScene().getWindow();
         Parent root = loaderNextScene.load();
         Scene scene = new Scene(root, 700, 700);

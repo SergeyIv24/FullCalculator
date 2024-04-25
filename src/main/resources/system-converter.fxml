@@ -6,9 +6,9 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="600.0" stylesheets="@styleMenu.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="my.project.fullCalculator.GUI.SystemConverterController">
    <children>
-      <MenuButton mnemonicParsing="false" text="| | |">
+      <MenuButton fx:id="menuConv" mnemonicParsing="false" onAction="#goBack" text="| | |">
         <items>
-          <MenuItem mnemonicParsing="false" text="В главное меню" />
+          <MenuItem mnemonicParsing="false" onAction="#goBack" text="В главное меню" />
           <MenuItem mnemonicParsing="false" text="Вычислить выражение" />
             <MenuItem mnemonicParsing="false" text="Unspecified Action" />
         </items>

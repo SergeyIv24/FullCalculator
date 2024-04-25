@@ -4,12 +4,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import my.project.fullCalculator.calculators.ConvertToDifferentSystem;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -39,6 +42,9 @@ public class SystemConverterController implements Initializable {
     @FXML
     private Label result;
 
+    @FXML
+    private MenuButton menuConv;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -49,7 +55,7 @@ public class SystemConverterController implements Initializable {
     }
 
     @FXML
-    protected void pressingEveryNumber(ActionEvent event) throws IOException {
+    protected void pressingEveryNumber(ActionEvent event) {
         Button btn = (Button) event.getSource();
 
         if (btn.getId().equals(numbersId.ONE)) {
@@ -121,6 +127,9 @@ public class SystemConverterController implements Initializable {
         }
 
         if (btn.getId().equals(numbersId.SOLUTION)) {
+            if (isFieldEmpty()) {
+                return;
+            }
             int systemFrom = Integer.parseInt(from.getValue());
             int systemTo = Integer.parseInt(to.getValue());
             String expression = fieldForConverting.getText();
@@ -135,6 +144,9 @@ public class SystemConverterController implements Initializable {
         }
 
         if (btn.getId().equals(numbersId.DELETE_LAST)) {
+            if (isFieldEmpty()) {
+                return;
+            }
             StringBuilder stringBuilder = new StringBuilder(fieldForConverting.getText());
             stringBuilder.deleteCharAt(stringBuilder.length() - 1);
             fieldForConverting.setText(stringBuilder.toString());
@@ -150,6 +162,19 @@ public class SystemConverterController implements Initializable {
             long numIn10 = ConvertToDifferentSystem.convertFromDiffSystemTo10(expression, systemFrom);
             return ConvertToDifferentSystem.convertToDiffSystemFrom10(numIn10, systemTo);
         }
+    }
+
+    private boolean isFieldEmpty() {
+        return fieldForConverting.getText().isEmpty();
+    }
+
+    @FXML
+    protected void goBack(ActionEvent event) throws IOException {
+        FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/menu-view.fxml"));
+        Stage stage = (Stage) menuConv.getScene().getWindow();
+        Parent root = loaderNextScene.load();
+        Scene scene = new Scene(root, 700, 700);
+        stage.setScene(scene);
     }
 
 

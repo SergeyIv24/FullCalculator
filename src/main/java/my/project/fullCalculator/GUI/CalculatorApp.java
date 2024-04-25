@@ -28,7 +28,6 @@ public class CalculatorApp extends Application {
 
         stage.setScene(sceneMenu);
         stage.show();
-
     }
 
     public static void main(String[] args) {
