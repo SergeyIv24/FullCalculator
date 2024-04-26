@@ -1,10 +1,14 @@
 package my.project.fullCalculator.calculators;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ConvertToDifferentSystem {
 
     private static final HashMap<Long, Character> lettersForNumber = new HashMap<>(); //Число - буква
+    private static final List<String> mathOperators = List.of("-", "+", "*", "/", "^", "(", ")", "Ln", "Lg");
 
     private static void fillMap(int system) {
         if (system < 11) {
@@ -67,7 +71,7 @@ public class ConvertToDifferentSystem {
         return number10 + revResult.toString();
     }
 
-    //Перевод из любой системы счисления в 10
+    //Перевод числа из любой системы счисления в 10
     public static long convertFromDiffSystemTo10(String expNot10, int systemFrom) {
         fillMap(systemFrom);
         long result = 0;
@@ -120,9 +124,45 @@ public class ConvertToDifferentSystem {
     }
 
     //Вычисления выражения, конвертация в пользовательскую СИ
-    public static String calculateTotal(String exp, int systemFrom) {
-        String expression = convertExpressionInSystem10(exp, systemFrom);
+    public static String calculateTotal(String exp, int systemFrom, int systemTo) {
+        //String expression = convertExpressionInSystem10(exp, systemFrom);
+        String expression = convertExpressionTo10System(exp, systemFrom);
         OrdinaryCalculator calculator = new OrdinaryCalculator(expression);
-        return convertToDiffSystemFrom10((int) calculator.solvePolandNotation(), systemFrom); //Вычисление, возврат в пользовательской СИ
+        return convertToDiffSystemFrom10((int) calculator.solvePolandNotation(), systemTo); //Вычисление, возврат в пользовательской СИ
     }
+
+    //Конвертация выражения в десятичную систему
+    public static String convertExpressionTo10System(String exp, int systemFrom) {
+       String newExp = Arrays.stream(exp.split(""))
+               .map(symbol -> {
+                   if (isMathOperator(symbol)) {
+                       return " " + symbol + " ";
+                   }
+                   return symbol;
+               }).collect(Collectors.joining());
+
+       return Arrays.stream(newExp.split(" "))
+               .map(num -> {
+                   if (!isMathOperator(num) && !num.isBlank()) {
+                       return String.valueOf(convertFromDiffSystemTo10(num, systemFrom));
+                   }
+                   return num;
+               })
+               .filter(symbol -> !symbol.isBlank() && !symbol.isEmpty())
+               .collect(Collectors.joining());
+        /* List<String> expIn10 = Arrays.stream(exp.split(""))
+                .map(num -> {
+                    if (!isMathOperator(num)) {
+                        return String.valueOf(convertFromDiffSystemTo10(num, systemFrom));
+                    }
+                    return num;
+                }).toList();
+        return expIn10.toString();*/
+    }
+
+    //Является ли строка математическим оператором
+    private static boolean isMathOperator(String str) {
+        return mathOperators.contains(str);
+    }
+
 }

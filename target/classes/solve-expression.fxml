@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="479.0" prefWidth="600.0" styleClass="styleMenu.css" stylesheets="@styleMenu.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="my.project.fullCalculator.GUI.ControllerCalc">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="479.0" prefWidth="600.0" styleClass="styleMenu.css" stylesheets="@styleMenu.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="my.project.fullCalculator.GUI.controllers.ControllerCalc">
     <children>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
@@ -13,6 +13,7 @@
                       <MenuItem fx:id="back" mnemonicParsing="false" onAction="#goBack" text="В главное меню" />
                       <MenuItem fx:id="toConverter" mnemonicParsing="false" onAction="#goToConverter" text="Конвертер систем счисления" />
                   <MenuItem mnemonicParsing="false" onAction="#goToRomanConverter" text="Конвертер римской системы" />
+                  <MenuItem mnemonicParsing="false" onAction="#goToSolveInDifferentSystems" text="Вычислить в другой СИ" />
                   </items>
               </MenuButton>
             <Label fx:id="title" text="Калькулятор">

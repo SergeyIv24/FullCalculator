@@ -1,4 +1,4 @@
-package my.project.fullCalculator.GUI;
+package my.project.fullCalculator.GUI.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +21,9 @@ public class ControllerMenu {
     private Button romanConverter;
 
     @FXML
+    private Button solveInDifferentSystems;
+
+    @FXML
     protected void goToSolve(ActionEvent event) throws IOException {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/solve-expression.fxml"));
         Stage stage = (Stage) solveExpression.getScene().getWindow();
@@ -40,8 +43,17 @@ public class ControllerMenu {
 
     @FXML
     protected void goToRomanConverter(ActionEvent event) throws IOException {
-        FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/poman-converter.fxml"));
+        FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/roman-converter.fxml"));
         Stage stage = (Stage) romanConverter.getScene().getWindow();
+        Parent root = loaderNextScene.load();
+        Scene scene = new Scene(root, 700, 700);
+        stage.setScene(scene);
+    }
+
+    @FXML
+    protected void goToSolveInDifferentSystems(ActionEvent event) throws IOException {
+        FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/solve-in-diff-systems.fxml"));
+        Stage stage = (Stage) solveInDifferentSystems.getScene().getWindow();
         Parent root = loaderNextScene.load();
         Scene scene = new Scene(root, 700, 700);
         stage.setScene(scene);

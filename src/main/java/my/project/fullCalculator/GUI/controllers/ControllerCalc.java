@@ -1,4 +1,4 @@
-package my.project.fullCalculator.GUI;
+package my.project.fullCalculator.GUI.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import my.project.fullCalculator.GUI.numbersId;
 import my.project.fullCalculator.calculators.CheckerInput;
 import my.project.fullCalculator.calculators.OrdinaryCalculator;
 
@@ -186,7 +187,7 @@ public class ControllerCalc implements Initializable {
 
     @FXML
     protected void goToRomanConverter() throws IOException {
-        FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/poman-converter.fxml"));
+        FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/roman-converter.fxml"));
         Stage stage = (Stage) menu.getScene().getWindow();
         Parent root = loaderNextScene.load();
         Scene scene = new Scene(root, 700, 700);
@@ -201,4 +202,14 @@ public class ControllerCalc implements Initializable {
         imageView.setFitWidth(30);
         menu.graphicProperty().setValue(imageView);
     }
+
+    @FXML
+    protected void goToSolveInDifferentSystems(ActionEvent event) throws IOException {
+        FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/solve-in-diff-systems.fxml"));
+        Stage stage = (Stage) menu.getScene().getWindow();
+        Parent root = loaderNextScene.load();
+        Scene scene = new Scene(root, 700, 700);
+        stage.setScene(scene);
+    }
+
 }

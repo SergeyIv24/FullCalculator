@@ -1,4 +1,4 @@
-package my.project.fullCalculator.GUI;
+package my.project.fullCalculator.GUI.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import my.project.fullCalculator.GUI.numbersId;
 import my.project.fullCalculator.calculators.ConvertToDifferentSystem;
 
 import java.io.IOException;
@@ -45,7 +46,7 @@ public class SystemConverterController implements Initializable {
     private Label result;
 
     @FXML
-    private MenuButton menuConv;
+    private MenuButton menu;
 
 
     @Override
@@ -58,7 +59,7 @@ public class SystemConverterController implements Initializable {
         ImageView imageView = new ImageView(iconMenu);
         imageView.setFitHeight(30);
         imageView.setFitWidth(30);
-        menuConv.graphicProperty().setValue(imageView);
+        menu.graphicProperty().setValue(imageView);
     }
 
     @FXML
@@ -144,7 +145,6 @@ public class SystemConverterController implements Initializable {
 
         }
 
-
         if (btn.getId().equals(numbersId.CLEAR)) {
             fieldForConverting.setText("");
             result.setText("");
@@ -178,7 +178,7 @@ public class SystemConverterController implements Initializable {
     @FXML
     protected void goBack(ActionEvent event) throws IOException {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/menu-view.fxml"));
-        Stage stage = (Stage) menuConv.getScene().getWindow();
+        Stage stage = (Stage) menu.getScene().getWindow();
         Parent root = loaderNextScene.load();
         Scene scene = new Scene(root, 700, 700);
         stage.setScene(scene);
@@ -187,7 +187,7 @@ public class SystemConverterController implements Initializable {
     @FXML
     protected void goCalculator() throws IOException {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/solve-expression.fxml"));
-        Stage stage = (Stage) menuConv.getScene().getWindow();
+        Stage stage = (Stage) menu.getScene().getWindow();
         Parent root = loaderNextScene.load();
         Scene scene = new Scene(root, 700, 700);
         stage.setScene(scene);
@@ -195,12 +195,19 @@ public class SystemConverterController implements Initializable {
 
     @FXML
     protected void goToRomanConverter() throws IOException {
-        FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/poman-converter.fxml"));
-        Stage stage = (Stage) menuConv.getScene().getWindow();
+        FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/roman-converter.fxml"));
+        Stage stage = (Stage) menu.getScene().getWindow();
         Parent root = loaderNextScene.load();
         Scene scene = new Scene(root, 700, 700);
         stage.setScene(scene);
     }
 
-
+    @FXML
+    protected void goToSolveInDifferentSystems(ActionEvent event) throws IOException {
+        FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/solve-in-diff-systems.fxml"));
+        Stage stage = (Stage) menu.getScene().getWindow();
+        Parent root = loaderNextScene.load();
+        Scene scene = new Scene(root, 700, 700);
+        stage.setScene(scene);
+    }
 }

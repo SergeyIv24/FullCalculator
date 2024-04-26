@@ -1,4 +1,4 @@
-package my.project.fullCalculator;
+package my.project.fullCalculator.consoleGUI;
 import my.project.fullCalculator.calculators.CheckerInput;
 import my.project.fullCalculator.calculators.ConvertToDifferentSystem;
 import my.project.fullCalculator.calculators.ConverterRomanSystem;
@@ -145,7 +145,7 @@ public class Manager {
                 String userExp = scanner.next();
                 try {
                     CheckerInput.checkInput(userExp);
-                    System.out.println(ConvertToDifferentSystem.calculateTotal(userExp, userSystem));
+                    System.out.println(ConvertToDifferentSystem.calculateTotal(userExp, userSystem, userSystem));
                 } catch (UserInoutException exception) {
                     System.out.println(exception.getMessage());
                 } finally {

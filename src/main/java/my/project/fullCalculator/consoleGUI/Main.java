@@ -1,4 +1,4 @@
-package my.project.fullCalculator;
+package my.project.fullCalculator.consoleGUI;
 
 public class Main {
     public static void main(String[] args) {

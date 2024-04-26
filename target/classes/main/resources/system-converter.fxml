@@ -4,15 +4,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="650.0" stylesheets="@styleMenu.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="my.project.fullCalculator.GUI.SystemConverterController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="650.0" stylesheets="@styleMenu.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="my.project.fullCalculator.GUI.controllers.SystemConverterController">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <MenuButton fx:id="menuConv" mnemonicParsing="false" onAction="#goBack" prefWidth="60.0">
+            <MenuButton fx:id="menu" mnemonicParsing="false" onAction="#goBack" prefWidth="60.0">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#goBack" text="В главное меню" />
                 <MenuItem mnemonicParsing="false" onAction="#goCalculator" text="Вычислить выражение" />
                   <MenuItem mnemonicParsing="false" onAction="#goToRomanConverter" text="Конвертер римской системы" />
+                  <MenuItem mnemonicParsing="false" onAction="#goToSolveInDifferentSystems" text="Вычислить в другой СИ" />
               </items>
             </MenuButton>
             <Label fx:id="title" text="Конвертер систем счисления">
@@ -64,7 +65,7 @@
                <HBox.margin>
                   <Insets bottom="10.0" left="100.0" right="10.0" top="10.0" />
                </HBox.margin></Label>
-            <Label fx:id="result" alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="254.0">
+            <Label fx:id="result" alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="255.0">
                <HBox.margin>
                   <Insets top="10.0" />
                </HBox.margin></Label>

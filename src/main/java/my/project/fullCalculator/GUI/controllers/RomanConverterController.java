@@ -1,4 +1,4 @@
-package my.project.fullCalculator.GUI;
+package my.project.fullCalculator.GUI.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,9 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import my.project.fullCalculator.calculators.ConverterRomanSystem;
-
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -96,6 +94,15 @@ public class RomanConverterController implements Initializable {
     @FXML
     protected void goCalculator() throws IOException {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/solve-expression.fxml"));
+        Stage stage = (Stage) menu.getScene().getWindow();
+        Parent root = loaderNextScene.load();
+        Scene scene = new Scene(root, 700, 700);
+        stage.setScene(scene);
+    }
+
+    @FXML
+    protected void goToSolveInDifferentSystems(ActionEvent event) throws IOException {
+        FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/solve-in-diff-systems.fxml"));
         Stage stage = (Stage) menu.getScene().getWindow();
         Parent root = loaderNextScene.load();
         Scene scene = new Scene(root, 700, 700);
