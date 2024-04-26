@@ -8,7 +8,7 @@ public class OrdinaryCalculator implements Calculator {
     private final Stack<Character> stackForChar;
     private final Stack<String> stackForNumbers;
     private String polandExpression = ""; //Выходная строка в польской нотации
-    private StringBuilder polandExpBuilder = new StringBuilder();
+    private final StringBuilder polandExpBuilder = new StringBuilder();
 
     public OrdinaryCalculator(String expression) {
         this.expression = expression;
@@ -30,11 +30,9 @@ public class OrdinaryCalculator implements Calculator {
         int indexContinue = 0; //Стартовое значение индекса для возврата
         for (int i = startIndex; i < exp.length; i++) { //Цикл по математическому выражению
             if (Character.isDigit(exp[i]) || (exp[i] == '.')) { //Если цифра
-               //polandExpression += exp[i]; //Добавление к выходной строке
-                polandExpBuilder.append(exp[i]);
+                polandExpBuilder.append(exp[i]); //Добавление к выходной строке
                 indexContinue = i; //Индекс проверенного элемента
             } else { //Если не цифра, завершение цикла, возврат индекса для продолжения цикла по выражению
-                //polandExpression += " ";
                 polandExpBuilder.append(" ");
                 return indexContinue;
             }
@@ -48,16 +46,12 @@ public class OrdinaryCalculator implements Calculator {
         for (int i = 0; i < arrExpression.length; i++) { //Цикл по элементам выражения
             if (Character.isDigit(arrExpression[i])) { //Если символ цифра
                 if (i > 0 && arrExpression[i - 1] != '~') {
-                    //polandExpression += " ";
                     polandExpBuilder.append(" ");
-
                 }
                 i = makeNum(arrExpression, i); //Добавить число со всеми разрядами в выходную строку
             } else if (arrExpression[i] == '~') {
-                //polandExpression += arrExpression[i];
                 polandExpBuilder.append(arrExpression[i]);
             } else { //Если символ, то добавление в стек
-                //polandExpression += " ";
                 polandExpBuilder.append(" ");
                 addToStack(arrExpression[i]); //Алгоритм управления стеком
             }
@@ -67,13 +61,12 @@ public class OrdinaryCalculator implements Calculator {
         while (!stackForChar.getStack().isEmpty()) {
             char sym = stackForChar.pop(); //Выталкивание элемента
             if ((sym != ')') && (sym != '(')) { //Если не скобка
-                //polandExpression = polandExpression + " " + sym; //Добавление к выходной строке
-                polandExpBuilder.append(" ").append(sym);
+                polandExpBuilder.append(" ").append(sym); //Добавление к выходной строке
             }
         }
         polandExpression = polandExpBuilder.toString();
-        return polandExpression.trim().replaceAll("  ", " ").replaceAll("  ", " ")
-                .replaceAll("  ", " ");// Удаление лишних пробелов
+        return polandExpression.trim().replaceAll(" {2}", " ").replaceAll(" {2}", " ")
+                .replaceAll(" {2}", " ");// Удаление лишних пробелов
     }
 
     //Алгоритм добавления элементов в стек
@@ -92,8 +85,7 @@ public class OrdinaryCalculator implements Calculator {
                 if (weightOfSymbol <= weightOfStack) { //Если входной символ имеет приоритет меньше, чем текущий
                     char sym = stackForChar.pop(); //Выталкивание элемента из стека
                     if ((sym != ')') && (sym != '(')) {
-                        //polandExpression = polandExpression + " " + sym; //Если вытолкнута не скобка, добавление к выходной строке
-                        polandExpBuilder.append(" ").append(sym);
+                        polandExpBuilder.append(" ").append(sym); //Если вытолкнута не скобка, добавление к выходной строке
                     }
                 } else { //Если входной символ имеет приоритет больше, чем текущий
                     stackForChar.push(symbol); //Добавление в стек
@@ -141,14 +133,14 @@ public class OrdinaryCalculator implements Calculator {
     }
 
     public Double makeTotal() {
-        String totalStr = "";
+        StringBuilder totalStrBuilder = new StringBuilder();
         while (stackForNumbers.getStackIterator() != - 1) { //Пока стек не пустой
             String totalSym = stackForNumbers.pop().trim(); //Выталкивание из стека
             if (!totalSym.isBlank()) { //Если не пробел totalSym != ' '
-                totalStr = totalStr + totalSym; //Добавление к строке
+                totalStrBuilder.append(totalSym); //Добавление к строке
             }
         }
-        return Double.parseDouble(totalStr);
+        return Double.parseDouble(totalStrBuilder.toString());
     }
 
 
