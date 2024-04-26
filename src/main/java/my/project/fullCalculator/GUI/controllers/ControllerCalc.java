@@ -10,7 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import my.project.fullCalculator.GUI.ConstanceId;
+import my.project.fullCalculator.GUI.Constance;
 import my.project.fullCalculator.calculators.CheckerInput;
 import my.project.fullCalculator.calculators.OrdinaryCalculator;
 import java.io.IOException;
@@ -33,62 +33,62 @@ public class ControllerCalc implements Initializable {
     protected void pressingEveryNumber(ActionEvent event) {
         Button btn = (Button) event.getSource(); //id нажатой кнопки
 
-        if (btn.getId().equals(ConstanceId.ONE)) {
+        if (btn.getId().equals(Constance.ONE)) {
             fieldForExpression.setText(fieldForExpression.getText() + "1");
         }
 
-        if (btn.getId().equals(ConstanceId.TWO)) {
+        if (btn.getId().equals(Constance.TWO)) {
             fieldForExpression.setText(fieldForExpression.getText() + "2");
         }
 
-        if (btn.getId().equals(ConstanceId.THREE)) {
+        if (btn.getId().equals(Constance.THREE)) {
             fieldForExpression.setText(fieldForExpression.getText() + "3");
         }
 
-        if (btn.getId().equals(ConstanceId.FOUR)) {
+        if (btn.getId().equals(Constance.FOUR)) {
             fieldForExpression.setText(fieldForExpression.getText() + "4");
         }
 
-        if (btn.getId().equals(ConstanceId.FIVE)) {
+        if (btn.getId().equals(Constance.FIVE)) {
             fieldForExpression.setText(fieldForExpression.getText() + "5");
         }
 
-        if (btn.getId().equals(ConstanceId.SIX)) {
+        if (btn.getId().equals(Constance.SIX)) {
             fieldForExpression.setText(fieldForExpression.getText() + "6");
         }
 
-        if (btn.getId().equals(ConstanceId.SEVEN)) {
+        if (btn.getId().equals(Constance.SEVEN)) {
             fieldForExpression.setText(fieldForExpression.getText() + "7");
         }
 
-        if (btn.getId().equals(ConstanceId.EIGHT)) {
+        if (btn.getId().equals(Constance.EIGHT)) {
             fieldForExpression.setText(fieldForExpression.getText() + "8");
         }
 
-        if (btn.getId().equals(ConstanceId.NINE)) {
+        if (btn.getId().equals(Constance.NINE)) {
             fieldForExpression.setText(fieldForExpression.getText() + "9");
         }
 
-        if (btn.getId().equals(ConstanceId.ZERO)) {
+        if (btn.getId().equals(Constance.ZERO)) {
             fieldForExpression.setText(fieldForExpression.getText() + "0");
         }
 
-        if (btn.getId().equals(ConstanceId.OPENED_BRACKET)) {
+        if (btn.getId().equals(Constance.OPENED_BRACKET)) {
             if (fieldForExpression.getText().isEmpty()) {
                 return; //Нельзя поставить открывающую скобку самым первым символом
             }
             fieldForExpression.setText(fieldForExpression.getText() + ")");
         }
 
-        if (btn.getId().equals(ConstanceId.CLOSED_BRACKET)) {
+        if (btn.getId().equals(Constance.CLOSED_BRACKET)) {
             fieldForExpression.setText(fieldForExpression.getText() + "(");
         }
 
-        if (btn.getId().equals(ConstanceId.POINT)) {
+        if (btn.getId().equals(Constance.POINT)) {
             fieldForExpression.setText(fieldForExpression.getText() + ".");
         }
 
-        if (btn.getId().equals(ConstanceId.PLUS)) {
+        if (btn.getId().equals(Constance.PLUS)) {
             //Если пользователь ввел первым символом +, перед + будет добавлен 0
             if (fieldForExpression.getText().isEmpty()) {
                 fieldForExpression.setText("0");
@@ -100,8 +100,8 @@ public class ControllerCalc implements Initializable {
             fieldForExpression.setText(fieldForExpression.getText() + "+");
         }
 
-        if (btn.getId().equals(ConstanceId.MINUS)) {
-            //Если пользователь ввел первым символом -, перед - будет добавлен 0
+        if (btn.getId().equals(Constance.MINUS)) {
+            //Если пользователь ввел первым символом "-", перед "-" будет добавлен 0
             if (fieldForExpression.getText().isEmpty()) {
                 fieldForExpression.setText("0");
             }
@@ -112,7 +112,7 @@ public class ControllerCalc implements Initializable {
             fieldForExpression.setText(fieldForExpression.getText() + "-");
         }
 
-        if (btn.getId().equals(ConstanceId.MULTIPLICATION)) {
+        if (btn.getId().equals(Constance.MULTIPLICATION)) {
             //Если пользователь ввел первым символом *, перед * будет добавлен 0
             if (fieldForExpression.getText().isEmpty()) {
                 fieldForExpression.setText("0");
@@ -124,7 +124,7 @@ public class ControllerCalc implements Initializable {
             fieldForExpression.setText(fieldForExpression.getText() + "*");
         }
 
-        if (btn.getId().equals(ConstanceId.DIVISION)) {
+        if (btn.getId().equals(Constance.DIVISION)) {
             //Если пользователь ввел первым символом /, перед / будет добавлен 0
             if (fieldForExpression.getText().isEmpty()) {
                 fieldForExpression.setText("0");
@@ -136,19 +136,19 @@ public class ControllerCalc implements Initializable {
             fieldForExpression.setText(fieldForExpression.getText() + "/");
         }
 
-        if (btn.getId().equals(ConstanceId.SOLUTION)) {
+        if (btn.getId().equals(Constance.SOLUTION)) {
             String exp = fieldForExpression.getText();
             result.setText(solveExp(exp)); //Решение выражения
         }
 
         //Очистка всех полей
-        if (btn.getId().equals(ConstanceId.CLEAR)) {
+        if (btn.getId().equals(Constance.CLEAR)) {
             fieldForExpression.setText("");
             result.setText("");
         }
 
         //Удаление последнего символа в поле ввода
-        if (btn.getId().equals(ConstanceId.DELETE_LAST)) {
+        if (btn.getId().equals(Constance.DELETE_LAST)) {
             StringBuilder stringBuilder = new StringBuilder(fieldForExpression.getText());
             stringBuilder.deleteCharAt(stringBuilder.length() - 1);
             fieldForExpression.setText(stringBuilder.toString());

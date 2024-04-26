@@ -1,7 +1,5 @@
 package my.project.fullCalculator.GUI.controllers;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import my.project.fullCalculator.GUI.Constance;
 import my.project.fullCalculator.calculators.ConvertToDifferentSystem;
 import java.io.IOException;
 import java.net.URL;
@@ -20,18 +19,10 @@ import java.util.ResourceBundle;
 public class SolveInDiffSystems implements Initializable {
 
     //Значение для Spinner
-    private final ObservableList<String> systemsTo =
-            FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9",
-                    "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26");
     private final SpinnerValueFactory<String> factoryTo =
-            new SpinnerValueFactory.ListSpinnerValueFactory<>(systemsTo);
-
-    //Значение для Spinner
-    private final ObservableList<String> systemsFrom =
-            FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7","8", "9","10", "11", "12",
-                    "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26");
+            new SpinnerValueFactory.ListSpinnerValueFactory<>(Constance.systems);
     private final SpinnerValueFactory<String> factoryFrom =
-            new SpinnerValueFactory.ListSpinnerValueFactory<>(systemsFrom);
+            new SpinnerValueFactory.ListSpinnerValueFactory<>(Constance.systems);
 
     @FXML
     private MenuButton menu;
@@ -55,8 +46,6 @@ public class SolveInDiffSystems implements Initializable {
         String expression = field.getText();
         result.setText(ConvertToDifferentSystem.calculateTotal(expression, Integer.parseInt(from), Integer.parseInt(to)));
     }
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -82,7 +71,6 @@ public class SolveInDiffSystems implements Initializable {
         }
         result.setText("");
     }
-
 
     @FXML
     protected void goBack() throws IOException {
