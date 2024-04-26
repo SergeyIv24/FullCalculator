@@ -1,0 +1,71 @@
+.root{
+    -fx-background-color:"#f2f2f0";
+}
+
+/*Простой текст*/
+.label{
+    -fx-font-size:15px
+}
+
+/*Заголовки окон*/
+#title{
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+/*Результаты*/
+#result, #result1{
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+#result{
+    -fx-border: 2px;
+    -fx-background-color:"#f2f2f0";
+    -fx-border-color: "#d2d6d3";
+    -fx-border-radius: 10px;
+    -fx-border-width: 3px;
+}
+
+/*Кнопки*/
+.button{
+    -fx-background-color: "#ffffff";
+    -fx-font-size:14pt;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, gray, 4px, 0, 0, 0);
+}
+
+.button:hover{
+    -fx-background-color: "#e8eaed";
+}
+
+/*Поля ввода текста*/
+#fieldForExpression, #field, #fieldForConverting{
+    -fx-background-color:"#f2f2f0";
+    -fx-border-color: "#d2d6d3";
+    -fx-font-size: 20px;
+    -fx-border-radius: 10px;
+    -fx-border-width: 3px;
+}
+
+/*Выпадающее меню*/
+.spinner{
+    -fx-font-size : 14px;
+    -fx-background-color: "#f1f1f1";
+}
+
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+    -fx-body-color: "#ffffff";
+}
+
+.spinner .increment-arrow-button:hover:pressed,
+.spinner .decrement-arrow-button:hover:pressed,
+.spinner .increment-arrow-button:pressed,
+.spinner .decrement-arrow-button:pressed {
+    -fx-body-color: RGB(204, 204, 204);
+}
+
+#menu{
+    -fx-background-color: "#f2f2f0";
+}
