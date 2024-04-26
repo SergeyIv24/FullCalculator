@@ -1,6 +1,6 @@
 package my.project.fullCalculator.GUI;
 
-public class numbersId {
+public class ConstanceId {
     public static final String ONE = "one";
     public static final String TWO = "two";
     public static final String THREE = "three";
@@ -27,6 +27,4 @@ public class numbersId {
     public static final String D = "D";
     public static final String E = "E";
     public static final String F = "F";
-
-
 }

@@ -2,7 +2,6 @@ package my.project.fullCalculator.GUI.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,19 +12,21 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import my.project.fullCalculator.calculators.ConvertToDifferentSystem;
-
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class SolveInDiffSystems implements Initializable {
 
+    //Значение для Spinner
     private final ObservableList<String> systemsTo =
             FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9",
                     "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26");
     private final SpinnerValueFactory<String> factoryTo =
             new SpinnerValueFactory.ListSpinnerValueFactory<>(systemsTo);
 
+    //Значение для Spinner
     private final ObservableList<String> systemsFrom =
             FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7","8", "9","10", "11", "12",
                     "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26");
@@ -48,7 +49,7 @@ public class SolveInDiffSystems implements Initializable {
     private Label result;
 
     @FXML
-    protected void pressingSolution(ActionEvent event) {
+    protected void pressingSolution() {
         String to = systemTo.getValue();
         String from = systemFrom.getValue();
         String expression = field.getText();
@@ -59,11 +60,13 @@ public class SolveInDiffSystems implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        factoryTo.setValue("10");
-        factoryFrom.setValue("2");
-        systemTo.setValueFactory(factoryTo);
-        systemFrom.setValueFactory(factoryFrom);
-        Image iconMenu = new Image(RomanConverterController.class.getResourceAsStream("/menu-icon.png"));
+        factoryTo.setValue("10"); //Начальное значение для Spinner
+        factoryFrom.setValue("2"); //Начальное значение для Spinner
+        systemTo.setValueFactory(factoryTo); //Установка всех значений для Spinner
+        systemFrom.setValueFactory(factoryFrom); //Установка всех значений для Spinner
+        Image iconMenu =
+                new Image(Objects.requireNonNull(RomanConverterController.class
+                        .getResourceAsStream("/menu-icon.png")));
         ImageView imageView = new ImageView(iconMenu);
         imageView.setFitHeight(30);
         imageView.setFitWidth(30);
@@ -71,7 +74,7 @@ public class SolveInDiffSystems implements Initializable {
     }
 
     @FXML
-    protected void pressingClear(ActionEvent event) {
+    protected void pressingClear() {
         factoryTo.setValue("10");
         factoryFrom.setValue("2");
         if (!field.getText().isEmpty()) {
@@ -82,7 +85,7 @@ public class SolveInDiffSystems implements Initializable {
 
 
     @FXML
-    protected void goBack(ActionEvent event) throws IOException {
+    protected void goBack() throws IOException {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/menu-view.fxml"));
         Stage stage = (Stage) menu.getScene().getWindow();
         Parent root = loaderNextScene.load();

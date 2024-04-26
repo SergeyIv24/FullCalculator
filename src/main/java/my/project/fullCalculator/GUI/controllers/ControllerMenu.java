@@ -1,13 +1,11 @@
 package my.project.fullCalculator.GUI.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class ControllerMenu {
@@ -24,38 +22,38 @@ public class ControllerMenu {
     private Button solveInDifferentSystems;
 
     @FXML
-    protected void goToSolve(ActionEvent event) throws IOException {
+    protected void goToSolve() throws IOException {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/solve-expression.fxml"));
         Stage stage = (Stage) solveExpression.getScene().getWindow();
         Parent root = loaderNextScene.load();
-        Scene scene = new Scene(root, 700, 700);
+        Scene scene = new Scene(root, 600, 600);
         stage.setScene(scene);
     }
 
     @FXML
-    protected void goToConverter(ActionEvent event) throws IOException {
+    protected void goToConverter() throws IOException {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/system-converter.fxml"));
         Stage stage = (Stage) converter.getScene().getWindow();
         Parent root = loaderNextScene.load();
-        Scene scene = new Scene(root, 700, 700);
+        Scene scene = new Scene(root, 600, 600);
         stage.setScene(scene);
     }
 
     @FXML
-    protected void goToRomanConverter(ActionEvent event) throws IOException {
+    protected void goToRomanConverter() throws IOException {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/roman-converter.fxml"));
         Stage stage = (Stage) romanConverter.getScene().getWindow();
         Parent root = loaderNextScene.load();
-        Scene scene = new Scene(root, 700, 700);
+        Scene scene = new Scene(root, 600, 600);
         stage.setScene(scene);
     }
 
     @FXML
-    protected void goToSolveInDifferentSystems(ActionEvent event) throws IOException {
+    protected void goToSolveInDifferentSystems() throws IOException {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/solve-in-diff-systems.fxml"));
         Stage stage = (Stage) solveInDifferentSystems.getScene().getWindow();
         Parent root = loaderNextScene.load();
-        Scene scene = new Scene(root, 700, 700);
+        Scene scene = new Scene(root, 600, 600);
         stage.setScene(scene);
     }
 }

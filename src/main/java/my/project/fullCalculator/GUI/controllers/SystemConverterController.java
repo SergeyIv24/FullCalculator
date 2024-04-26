@@ -12,15 +12,17 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import my.project.fullCalculator.GUI.numbersId;
+import my.project.fullCalculator.GUI.ConstanceId;
 import my.project.fullCalculator.calculators.ConvertToDifferentSystem;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class SystemConverterController implements Initializable {
 
+    //Значения для Spinner
     private final ObservableList<String> systemsTo =
             FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9",
             "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26");
@@ -55,7 +57,9 @@ public class SystemConverterController implements Initializable {
         factoryFrom.setValue("2");
         from.setValueFactory(factoryTo);
         to.setValueFactory(factoryFrom);
-        Image iconMenu = new Image(RomanConverterController.class.getResourceAsStream("/menu-icon.png"));
+        Image iconMenu =
+                new Image(Objects.requireNonNull(RomanConverterController.class
+                        .getResourceAsStream("/menu-icon.png")));
         ImageView imageView = new ImageView(iconMenu);
         imageView.setFitHeight(30);
         imageView.setFitWidth(30);
@@ -66,75 +70,75 @@ public class SystemConverterController implements Initializable {
     protected void pressingEveryNumber(ActionEvent event) {
         Button btn = (Button) event.getSource();
 
-        if (btn.getId().equals(numbersId.ONE)) {
+        if (btn.getId().equals(ConstanceId.ONE)) {
             fieldForConverting.setText(fieldForConverting.getText() + "1");
         }
 
-        if (btn.getId().equals(numbersId.TWO)) {
+        if (btn.getId().equals(ConstanceId.TWO)) {
             fieldForConverting.setText(fieldForConverting.getText() + "2");
         }
 
-        if (btn.getId().equals(numbersId.THREE)) {
+        if (btn.getId().equals(ConstanceId.THREE)) {
             fieldForConverting.setText(fieldForConverting.getText() + "3");
         }
 
-        if (btn.getId().equals(numbersId.FOUR)) {
+        if (btn.getId().equals(ConstanceId.FOUR)) {
             fieldForConverting.setText(fieldForConverting.getText() + "4");
         }
 
-        if (btn.getId().equals(numbersId.FIVE)) {
+        if (btn.getId().equals(ConstanceId.FIVE)) {
             fieldForConverting.setText(fieldForConverting.getText() + "5");
         }
 
-        if (btn.getId().equals(numbersId.SIX)) {
+        if (btn.getId().equals(ConstanceId.SIX)) {
             fieldForConverting.setText(fieldForConverting.getText() + "6");
         }
 
-        if (btn.getId().equals(numbersId.SEVEN)) {
+        if (btn.getId().equals(ConstanceId.SEVEN)) {
             fieldForConverting.setText(fieldForConverting.getText() + "7");
         }
 
-        if (btn.getId().equals(numbersId.EIGHT)) {
+        if (btn.getId().equals(ConstanceId.EIGHT)) {
             fieldForConverting.setText(fieldForConverting.getText() + "8");
         }
 
-        if (btn.getId().equals(numbersId.NINE)) {
+        if (btn.getId().equals(ConstanceId.NINE)) {
             fieldForConverting.setText(fieldForConverting.getText() + "9");
         }
 
-        if (btn.getId().equals(numbersId.ZERO)) {
+        if (btn.getId().equals(ConstanceId.ZERO)) {
             fieldForConverting.setText(fieldForConverting.getText() + "0");
         }
 
-        if (btn.getId().equals(numbersId.A)) {
+        if (btn.getId().equals(ConstanceId.A)) {
             fieldForConverting.setText(fieldForConverting.getText() + "A");
         }
 
-        if (btn.getId().equals(numbersId.B)) {
+        if (btn.getId().equals(ConstanceId.B)) {
             fieldForConverting.setText(fieldForConverting.getText() + "B");
         }
 
-        if (btn.getId().equals(numbersId.C)) {
+        if (btn.getId().equals(ConstanceId.C)) {
             fieldForConverting.setText(fieldForConverting.getText() + "C");
         }
 
-        if (btn.getId().equals(numbersId.D)) {
+        if (btn.getId().equals(ConstanceId.D)) {
             fieldForConverting.setText(fieldForConverting.getText() + "D");
         }
 
-        if (btn.getId().equals(numbersId.E)) {
+        if (btn.getId().equals(ConstanceId.E)) {
             fieldForConverting.setText(fieldForConverting.getText() + "E");
         }
 
-        if (btn.getId().equals(numbersId.F)) {
+        if (btn.getId().equals(ConstanceId.F)) {
             fieldForConverting.setText(fieldForConverting.getText() + "F");
         }
 
-        if (btn.getId().equals(numbersId.POINT)) {
+        if (btn.getId().equals(ConstanceId.POINT)) {
             fieldForConverting.setText(fieldForConverting.getText() + ".");
         }
 
-        if (btn.getId().equals(numbersId.SOLUTION)) {
+        if (btn.getId().equals(ConstanceId.SOLUTION)) {
             if (isFieldEmpty()) {
                 return;
             }
@@ -145,12 +149,12 @@ public class SystemConverterController implements Initializable {
 
         }
 
-        if (btn.getId().equals(numbersId.CLEAR)) {
+        if (btn.getId().equals(ConstanceId.CLEAR)) {
             fieldForConverting.setText("");
             result.setText("");
         }
 
-        if (btn.getId().equals(numbersId.DELETE_LAST)) {
+        if (btn.getId().equals(ConstanceId.DELETE_LAST)) {
             if (isFieldEmpty()) {
                 return;
             }
@@ -176,7 +180,7 @@ public class SystemConverterController implements Initializable {
     }
 
     @FXML
-    protected void goBack(ActionEvent event) throws IOException {
+    protected void goBack() throws IOException {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/menu-view.fxml"));
         Stage stage = (Stage) menu.getScene().getWindow();
         Parent root = loaderNextScene.load();
@@ -203,7 +207,7 @@ public class SystemConverterController implements Initializable {
     }
 
     @FXML
-    protected void goToSolveInDifferentSystems(ActionEvent event) throws IOException {
+    protected void goToSolveInDifferentSystems() throws IOException {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/solve-in-diff-systems.fxml"));
         Stage stage = (Stage) menu.getScene().getWindow();
         Parent root = loaderNextScene.load();
