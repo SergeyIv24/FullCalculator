@@ -22,7 +22,6 @@ public class CalculatorApp extends Application {
         stage.setTitle("Калькулятор"); //Заголовок окна
 
         InputStream iconStream = CalculatorApp.class.getResourceAsStream("/calc-icon.png");
-        System.out.println(iconStream);
         Image iconApp = new Image(iconStream);
         stage.getIcons().add(iconApp);
 

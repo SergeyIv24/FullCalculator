@@ -39,8 +39,11 @@
       </HBox>
       <TextField fx:id="fieldForConverting" prefHeight="50.0" prefWidth="600.0">
          <VBox.margin>
-            <Insets top="10.0" />
-         </VBox.margin></TextField>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets></TextField>
       <Label fx:id="result" alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="600.0" text="Здесь будет результат">
          <VBox.margin>
             <Insets bottom="10.0" top="10.0" />
