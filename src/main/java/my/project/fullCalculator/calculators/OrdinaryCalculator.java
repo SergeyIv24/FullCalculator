@@ -132,6 +132,7 @@ public class OrdinaryCalculator implements Calculator {
         return total;
     }
 
+    @Override
     public Double makeTotal() {
         StringBuilder totalStrBuilder = new StringBuilder();
         while (stackForNumbers.getStackIterator() != - 1) { //Пока стек не пустой
@@ -142,7 +143,6 @@ public class OrdinaryCalculator implements Calculator {
         }
         return Double.parseDouble(totalStrBuilder.toString());
     }
-
 
     public void solveExpression(String mathSymbol) {
         double number1 = parseNumberFromStack();
@@ -163,7 +163,6 @@ public class OrdinaryCalculator implements Calculator {
         stackForNumbers.push(resultStr); //Возврат значения в стек
     }
 
-
     public double parseNumberFromStack() {
         if (!stackForNumbers.isEmpty()) {
             return Double.parseDouble(stackForNumbers.pop());
@@ -175,7 +174,6 @@ public class OrdinaryCalculator implements Calculator {
         return inputNum.replaceAll("~", "-");
     }
 
-
     //Проверка является ли строка числом
     private static boolean isNumber(String inputNum) {
         try {
@@ -185,5 +183,4 @@ public class OrdinaryCalculator implements Calculator {
             return false;
         }
     }
-
 }
