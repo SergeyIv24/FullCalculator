@@ -84,4 +84,22 @@ public class RomanConverterController implements Initializable {
         stage.setScene(scene);
     }
 
+    @FXML
+    protected void goToConverter() throws IOException {
+        FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/system-converter.fxml"));
+        Stage stage = (Stage) menu.getScene().getWindow();
+        Parent root = loaderNextScene.load();
+        Scene scene = new Scene(root, 700, 700);
+        stage.setScene(scene);
+    }
+
+    @FXML
+    protected void goCalculator() throws IOException {
+        FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/solve-expression.fxml"));
+        Stage stage = (Stage) menu.getScene().getWindow();
+        Parent root = loaderNextScene.load();
+        Scene scene = new Scene(root, 700, 700);
+        stage.setScene(scene);
+    }
+
 }

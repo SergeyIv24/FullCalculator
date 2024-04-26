@@ -3,16 +3,21 @@ package my.project.fullCalculator.GUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import my.project.fullCalculator.calculators.CheckerInput;
 import my.project.fullCalculator.calculators.OrdinaryCalculator;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ControllerCalc {
+public class ControllerCalc implements Initializable {
 
     @FXML
     private TextField fieldForExpression;
@@ -24,7 +29,7 @@ public class ControllerCalc {
     private MenuButton menu;
 
     @FXML
-    protected void pressingEveryNumber(ActionEvent event) throws IOException {
+    protected void pressingEveryNumber(ActionEvent event) {
         Button btn = (Button) event.getSource();
 
         if (btn.getId().equals(numbersId.ONE)) {
@@ -170,5 +175,30 @@ public class ControllerCalc {
         stage.setScene(scene);
     }
 
+    @FXML
+    protected void goToConverter() throws IOException {
+        FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/system-converter.fxml"));
+        Stage stage = (Stage) menu.getScene().getWindow();
+        Parent root = loaderNextScene.load();
+        Scene scene = new Scene(root, 700, 700);
+        stage.setScene(scene);
+    }
 
+    @FXML
+    protected void goToRomanConverter() throws IOException {
+        FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/poman-converter.fxml"));
+        Stage stage = (Stage) menu.getScene().getWindow();
+        Parent root = loaderNextScene.load();
+        Scene scene = new Scene(root, 700, 700);
+        stage.setScene(scene);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Image iconMenu = new Image(RomanConverterController.class.getResourceAsStream("/menu-icon.png"));
+        ImageView imageView = new ImageView(iconMenu);
+        imageView.setFitHeight(30);
+        imageView.setFitWidth(30);
+        menu.graphicProperty().setValue(imageView);
+    }
 }

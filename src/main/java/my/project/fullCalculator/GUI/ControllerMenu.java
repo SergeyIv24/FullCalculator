@@ -41,7 +41,7 @@ public class ControllerMenu {
     @FXML
     protected void goToRomanConverter(ActionEvent event) throws IOException {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/poman-converter.fxml"));
-        Stage stage = (Stage) converter.getScene().getWindow();
+        Stage stage = (Stage) romanConverter.getScene().getWindow();
         Parent root = loaderNextScene.load();
         Scene scene = new Scene(root, 700, 700);
         stage.setScene(scene);

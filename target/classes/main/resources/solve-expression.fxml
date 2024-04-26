@@ -8,18 +8,19 @@
     <children>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-              <MenuButton fx:id="menu" mnemonicParsing="false" prefWidth="60.0" text="| | |">
+              <MenuButton fx:id="menu" mnemonicParsing="false" prefWidth="60.0">
                   <items>
                       <MenuItem fx:id="back" mnemonicParsing="false" onAction="#goBack" text="В главное меню" />
-                      <MenuItem fx:id="toConverter" mnemonicParsing="false" text="Конвертер систем счисления" />
+                      <MenuItem fx:id="toConverter" mnemonicParsing="false" onAction="#goToConverter" text="Конвертер систем счисления" />
+                  <MenuItem mnemonicParsing="false" onAction="#goToRomanConverter" text="Конвертер римской системы" />
                   </items>
               </MenuButton>
-            <Label fx:id="title3" text="Калькулятор">
+            <Label fx:id="title" text="Калькулятор">
                <padding>
                   <Insets top="10.0" />
                </padding>
                <HBox.margin>
-                  <Insets left="160.0" />
+                  <Insets left="180.0" />
                </HBox.margin></Label>
          </children>
       </HBox>

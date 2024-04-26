@@ -11,10 +11,11 @@
             <MenuButton fx:id="menu" mnemonicParsing="false" prefWidth="60.0">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#goBack" text="Главное меню" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
+                <MenuItem mnemonicParsing="false" onAction="#goCalculator" text="Калькулятор" />
+                  <MenuItem mnemonicParsing="false" onAction="#goToConverter" text="Конвертер систем счисления" />
               </items>
             </MenuButton>
-            <Label fx:id="title3" alignment="CENTER" contentDisplay="CENTER" text="Конвертер римских цифр" textAlignment="CENTER">
+            <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" text="Конвертер римских цифр" textAlignment="CENTER">
                <padding>
                   <Insets top="10.0" />
                </padding>

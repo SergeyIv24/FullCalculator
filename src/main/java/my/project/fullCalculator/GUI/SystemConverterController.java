@@ -9,6 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import my.project.fullCalculator.calculators.ConvertToDifferentSystem;
 
@@ -52,6 +54,11 @@ public class SystemConverterController implements Initializable {
         factoryFrom.setValue("2");
         from.setValueFactory(factoryTo);
         to.setValueFactory(factoryFrom);
+        Image iconMenu = new Image(RomanConverterController.class.getResourceAsStream("/menu-icon.png"));
+        ImageView imageView = new ImageView(iconMenu);
+        imageView.setFitHeight(30);
+        imageView.setFitWidth(30);
+        menuConv.graphicProperty().setValue(imageView);
     }
 
     @FXML
@@ -171,6 +178,24 @@ public class SystemConverterController implements Initializable {
     @FXML
     protected void goBack(ActionEvent event) throws IOException {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/menu-view.fxml"));
+        Stage stage = (Stage) menuConv.getScene().getWindow();
+        Parent root = loaderNextScene.load();
+        Scene scene = new Scene(root, 700, 700);
+        stage.setScene(scene);
+    }
+
+    @FXML
+    protected void goCalculator() throws IOException {
+        FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/solve-expression.fxml"));
+        Stage stage = (Stage) menuConv.getScene().getWindow();
+        Parent root = loaderNextScene.load();
+        Scene scene = new Scene(root, 700, 700);
+        stage.setScene(scene);
+    }
+
+    @FXML
+    protected void goToRomanConverter() throws IOException {
+        FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/poman-converter.fxml"));
         Stage stage = (Stage) menuConv.getScene().getWindow();
         Parent root = loaderNextScene.load();
         Scene scene = new Scene(root, 700, 700);
