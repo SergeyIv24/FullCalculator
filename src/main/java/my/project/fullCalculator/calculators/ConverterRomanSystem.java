@@ -50,18 +50,18 @@ public class ConverterRomanSystem {
         arabAndRoman.put(4L, "IV");
         arabAndRoman.put(1L, "I");
 
-        String romanNumber = "";
+        StringBuilder romanNumberBuilder = new StringBuilder();
 
         while (number > 0) {
             for (Long num : arabAndRoman.keySet()) {
                 if (number >= num) {
-                    romanNumber = romanNumber + arabAndRoman.get(num);
+                    romanNumberBuilder.append(arabAndRoman.get(num));
                     number = number - num;
                     break;
                 }
             }
 
         }
-        return romanNumber;
+        return romanNumberBuilder.toString();
     }
 }

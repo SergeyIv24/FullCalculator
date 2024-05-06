@@ -1,6 +1,9 @@
 package my.project.fullCalculator.GUI;
 
-public class numbersId {
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+public class Constance {
     public static final String ONE = "one";
     public static final String TWO = "two";
     public static final String THREE = "three";
@@ -27,6 +30,8 @@ public class numbersId {
     public static final String D = "D";
     public static final String E = "E";
     public static final String F = "F";
-
+    public static final ObservableList<String> systems =
+            FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9",
+                    "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26");
 
 }

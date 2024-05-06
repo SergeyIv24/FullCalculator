@@ -1,7 +1,5 @@
 package my.project.fullCalculator.GUI.controllers;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,26 +10,21 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import my.project.fullCalculator.GUI.numbersId;
+import my.project.fullCalculator.GUI.Constance;
 import my.project.fullCalculator.calculators.ConvertToDifferentSystem;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class SystemConverterController implements Initializable {
 
-    private final ObservableList<String> systemsTo =
-            FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9",
-            "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26");
+    //Значения для Spinner
     private final SpinnerValueFactory<String> factoryTo =
-            new SpinnerValueFactory.ListSpinnerValueFactory<>(systemsTo);
-
-    private final ObservableList<String> systemsFrom =
-            FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7","8", "9","10", "11", "12",
-                    "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26");
+            new SpinnerValueFactory.ListSpinnerValueFactory<>(Constance.systems);
     private final SpinnerValueFactory<String> factoryFrom =
-            new SpinnerValueFactory.ListSpinnerValueFactory<>(systemsFrom);
+            new SpinnerValueFactory.ListSpinnerValueFactory<>(Constance.systems);
 
     @FXML
     private Spinner<String> from;
@@ -53,9 +46,11 @@ public class SystemConverterController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         factoryTo.setValue("10");
         factoryFrom.setValue("2");
-        from.setValueFactory(factoryTo);
-        to.setValueFactory(factoryFrom);
-        Image iconMenu = new Image(RomanConverterController.class.getResourceAsStream("/menu-icon.png"));
+        from.setValueFactory(factoryFrom);
+        to.setValueFactory(factoryTo);
+        Image iconMenu =
+                new Image(Objects.requireNonNull(RomanConverterController.class
+                        .getResourceAsStream("/menu-icon.png")));
         ImageView imageView = new ImageView(iconMenu);
         imageView.setFitHeight(30);
         imageView.setFitWidth(30);
@@ -66,75 +61,75 @@ public class SystemConverterController implements Initializable {
     protected void pressingEveryNumber(ActionEvent event) {
         Button btn = (Button) event.getSource();
 
-        if (btn.getId().equals(numbersId.ONE)) {
+        if (btn.getId().equals(Constance.ONE)) {
             fieldForConverting.setText(fieldForConverting.getText() + "1");
         }
 
-        if (btn.getId().equals(numbersId.TWO)) {
+        if (btn.getId().equals(Constance.TWO)) {
             fieldForConverting.setText(fieldForConverting.getText() + "2");
         }
 
-        if (btn.getId().equals(numbersId.THREE)) {
+        if (btn.getId().equals(Constance.THREE)) {
             fieldForConverting.setText(fieldForConverting.getText() + "3");
         }
 
-        if (btn.getId().equals(numbersId.FOUR)) {
+        if (btn.getId().equals(Constance.FOUR)) {
             fieldForConverting.setText(fieldForConverting.getText() + "4");
         }
 
-        if (btn.getId().equals(numbersId.FIVE)) {
+        if (btn.getId().equals(Constance.FIVE)) {
             fieldForConverting.setText(fieldForConverting.getText() + "5");
         }
 
-        if (btn.getId().equals(numbersId.SIX)) {
+        if (btn.getId().equals(Constance.SIX)) {
             fieldForConverting.setText(fieldForConverting.getText() + "6");
         }
 
-        if (btn.getId().equals(numbersId.SEVEN)) {
+        if (btn.getId().equals(Constance.SEVEN)) {
             fieldForConverting.setText(fieldForConverting.getText() + "7");
         }
 
-        if (btn.getId().equals(numbersId.EIGHT)) {
+        if (btn.getId().equals(Constance.EIGHT)) {
             fieldForConverting.setText(fieldForConverting.getText() + "8");
         }
 
-        if (btn.getId().equals(numbersId.NINE)) {
+        if (btn.getId().equals(Constance.NINE)) {
             fieldForConverting.setText(fieldForConverting.getText() + "9");
         }
 
-        if (btn.getId().equals(numbersId.ZERO)) {
+        if (btn.getId().equals(Constance.ZERO)) {
             fieldForConverting.setText(fieldForConverting.getText() + "0");
         }
 
-        if (btn.getId().equals(numbersId.A)) {
+        if (btn.getId().equals(Constance.A)) {
             fieldForConverting.setText(fieldForConverting.getText() + "A");
         }
 
-        if (btn.getId().equals(numbersId.B)) {
+        if (btn.getId().equals(Constance.B)) {
             fieldForConverting.setText(fieldForConverting.getText() + "B");
         }
 
-        if (btn.getId().equals(numbersId.C)) {
+        if (btn.getId().equals(Constance.C)) {
             fieldForConverting.setText(fieldForConverting.getText() + "C");
         }
 
-        if (btn.getId().equals(numbersId.D)) {
+        if (btn.getId().equals(Constance.D)) {
             fieldForConverting.setText(fieldForConverting.getText() + "D");
         }
 
-        if (btn.getId().equals(numbersId.E)) {
+        if (btn.getId().equals(Constance.E)) {
             fieldForConverting.setText(fieldForConverting.getText() + "E");
         }
 
-        if (btn.getId().equals(numbersId.F)) {
+        if (btn.getId().equals(Constance.F)) {
             fieldForConverting.setText(fieldForConverting.getText() + "F");
         }
 
-        if (btn.getId().equals(numbersId.POINT)) {
+        if (btn.getId().equals(Constance.POINT)) {
             fieldForConverting.setText(fieldForConverting.getText() + ".");
         }
 
-        if (btn.getId().equals(numbersId.SOLUTION)) {
+        if (btn.getId().equals(Constance.SOLUTION)) {
             if (isFieldEmpty()) {
                 return;
             }
@@ -145,12 +140,12 @@ public class SystemConverterController implements Initializable {
 
         }
 
-        if (btn.getId().equals(numbersId.CLEAR)) {
+        if (btn.getId().equals(Constance.CLEAR)) {
             fieldForConverting.setText("");
             result.setText("");
         }
 
-        if (btn.getId().equals(numbersId.DELETE_LAST)) {
+        if (btn.getId().equals(Constance.DELETE_LAST)) {
             if (isFieldEmpty()) {
                 return;
             }
@@ -176,7 +171,7 @@ public class SystemConverterController implements Initializable {
     }
 
     @FXML
-    protected void goBack(ActionEvent event) throws IOException {
+    protected void goBack() throws IOException {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/menu-view.fxml"));
         Stage stage = (Stage) menu.getScene().getWindow();
         Parent root = loaderNextScene.load();
@@ -203,7 +198,7 @@ public class SystemConverterController implements Initializable {
     }
 
     @FXML
-    protected void goToSolveInDifferentSystems(ActionEvent event) throws IOException {
+    protected void goToSolveInDifferentSystems() throws IOException {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/solve-in-diff-systems.fxml"));
         Stage stage = (Stage) menu.getScene().getWindow();
         Parent root = loaderNextScene.load();

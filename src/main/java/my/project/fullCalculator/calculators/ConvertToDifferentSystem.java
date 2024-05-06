@@ -23,52 +23,47 @@ public class ConvertToDifferentSystem {
 
         int k = 0;
         for (long i = 10; i < system; i++, k++) {
-            lettersForNumber.put(i, alphabet[k]); //Заполнение мапы ключами и буквами
+            lettersForNumber.put(i, alphabet[k]); //Заполнение Map ключами и буквами
         }
     }
 
 
     //Перевод в любую систему счисления из 10
     public static String convertToDiffSystemFrom10(long number10, int systemTo) {
-
        boolean isNegative = false;
         if (number10 < 0) {
             isNegative = true;
             number10 = number10 * (-1);
         }
-        String result = "";
+
+        StringBuilder resultBuilder = new StringBuilder();
         fillMap(systemTo);
 
         if (systemTo >= 10 && number10 < systemTo) {
             if (lettersForNumber.containsKey(number10)) {
-                return result + lettersForNumber.get(number10);
+                return "" + lettersForNumber.get(number10);
             }
-
         }
-
         long surplus;
-
         while (number10 >= systemTo) {
             surplus =  (int) (number10 % systemTo);
             number10 = number10 / systemTo;
 
             if (systemTo > 10) { //Если СИ больше 10
-                if (lettersForNumber.containsKey(surplus)) { //Если ключ есть в мапе
-                    result += lettersForNumber.get(surplus);
+                if (lettersForNumber.containsKey(surplus)) { //Если ключ есть в Map
+                    resultBuilder.append(lettersForNumber.get(surplus));
                 } else {
-                    result += surplus;
+                    resultBuilder.append(surplus);
                 }
             } else {
-                result += surplus;
+                resultBuilder.append(surplus);
             }
         }
-        StringBuilder revResult = new StringBuilder(result).reverse();
 
         if (isNegative) {
-            return "-" + number10 + revResult;
+            return "-" + number10 + resultBuilder.reverse();
         }
-
-        return number10 + revResult.toString();
+        return number10 + resultBuilder.reverse().toString();
     }
 
     //Перевод числа из любой системы счисления в 10
@@ -77,10 +72,7 @@ public class ConvertToDifferentSystem {
         long result = 0;
         char[] arrExp = expNot10.toCharArray();
 
-        boolean isNegative = false;
-        if (arrExp[0] == '-') {
-            isNegative = true;
-        }
+        boolean isNegative = arrExp[0] == '-';
 
         int j = arrExp.length - 1;
         for (int i = 0; i < arrExp.length; i++, j--) {
@@ -99,28 +91,6 @@ public class ConvertToDifferentSystem {
         }
 
         return result;
-    }
-
-
-    //Перевод выражения из пользовательской СИ в 10
-    public static String convertExpressionInSystem10(String exp, int systemFrom) {
-        char[] numAndSymbols = exp.toCharArray();
-        String newExpression = "";
-        String number = "";
-        for (char symbol : numAndSymbols) {
-            if (Character.isDigit(symbol)) { //Если цифра
-                number = number + symbol; //К выходной строке
-            } else { //Если символ
-                if (!number.isEmpty()) { //Если строка не пустая
-                    newExpression = newExpression + convertFromDiffSystemTo10(number, systemFrom); //Числов в десятичную
-                }
-                newExpression = newExpression + symbol; //Добавление символа
-                number = ""; //Обнуление строки числа
-            }
-        }
-        newExpression = newExpression + convertFromDiffSystemTo10(number, systemFrom); //Если number содержит значение
-
-        return newExpression;
     }
 
     //Вычисления выражения, конвертация в пользовательскую СИ
@@ -150,14 +120,6 @@ public class ConvertToDifferentSystem {
                })
                .filter(symbol -> !symbol.isBlank() && !symbol.isEmpty())
                .collect(Collectors.joining());
-        /* List<String> expIn10 = Arrays.stream(exp.split(""))
-                .map(num -> {
-                    if (!isMathOperator(num)) {
-                        return String.valueOf(convertFromDiffSystemTo10(num, systemFrom));
-                    }
-                    return num;
-                }).toList();
-        return expIn10.toString();*/
     }
 
     //Является ли строка математическим оператором
