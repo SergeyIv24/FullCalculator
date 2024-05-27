@@ -6,16 +6,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import my.project.fullCalculator.GUI.controllers.SettableWindowSize;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
 
-public class CalculatorApp extends Application {
+public class CalculatorApp extends Application implements SettableWindowSize {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoaderMenu = new FXMLLoader(CalculatorApp.class.getResource("/menu-view.fxml")); //Загрузка XML файла
         Parent rootNode = fxmlLoaderMenu.load(); //Корневой узел
-        Scene sceneMenu = new Scene(rootNode, 600, 600); // Создание сцены по корневому узлу
+        Scene sceneMenu = sceneCreator(rootNode, stage);
         String pathToCss = "";
         try { //Путь к файлу css
             pathToCss = Objects.requireNonNull(this.getClass().getResource("/styleMenu.css")).toExternalForm();

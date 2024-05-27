@@ -6,9 +6,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 
-public class ControllerMenu {
+public class ControllerMenu implements SettableWindowSize {
     @FXML
     private Button solveExpression;
 
@@ -26,7 +27,7 @@ public class ControllerMenu {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/solve-expression.fxml"));
         Stage stage = (Stage) solveExpression.getScene().getWindow();
         Parent root = loaderNextScene.load();
-        Scene scene = new Scene(root, 600, 600);
+        Scene scene = sceneCreator(root, stage);
         stage.setScene(scene);
     }
 
@@ -35,7 +36,7 @@ public class ControllerMenu {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/system-converter.fxml"));
         Stage stage = (Stage) converter.getScene().getWindow();
         Parent root = loaderNextScene.load();
-        Scene scene = new Scene(root, 600, 600);
+        Scene scene = sceneCreator(root, stage);
         stage.setScene(scene);
     }
 
@@ -44,7 +45,7 @@ public class ControllerMenu {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/roman-converter.fxml"));
         Stage stage = (Stage) romanConverter.getScene().getWindow();
         Parent root = loaderNextScene.load();
-        Scene scene = new Scene(root, 600, 600);
+        Scene scene = sceneCreator(root, stage);
         stage.setScene(scene);
     }
 
@@ -53,7 +54,7 @@ public class ControllerMenu {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/solve-in-diff-systems.fxml"));
         Stage stage = (Stage) solveInDifferentSystems.getScene().getWindow();
         Parent root = loaderNextScene.load();
-        Scene scene = new Scene(root, 600, 600);
+        Scene scene = sceneCreator(root, stage);
         stage.setScene(scene);
     }
 }

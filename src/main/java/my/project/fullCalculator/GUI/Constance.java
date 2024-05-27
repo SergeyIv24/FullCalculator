@@ -33,5 +33,11 @@ public class Constance {
     public static final ObservableList<String> systems =
             FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9",
                     "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26");
+    public static final int windowHeight = 600;
+    public static final int windowWeight = 600;
+    public static final int maxWindowHeight = 700;
+    public static final int maxWindowWeight = 700;
+    public static final int minWindowHeight = 400;
+    public static final int minWindowWeight = 400;
 
 }

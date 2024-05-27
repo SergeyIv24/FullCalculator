@@ -16,7 +16,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class SolveInDiffSystems implements Initializable {
+public class SolveInDiffSystems implements Initializable, SettableWindowSize {
 
     //Значение для Spinner
     private final SpinnerValueFactory<String> factoryTo =
@@ -77,7 +77,7 @@ public class SolveInDiffSystems implements Initializable {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/menu-view.fxml"));
         Stage stage = (Stage) menu.getScene().getWindow();
         Parent root = loaderNextScene.load();
-        Scene scene = new Scene(root, 700, 700);
+        Scene scene = sceneCreator(root, stage);
         stage.setScene(scene);
     }
 
@@ -86,7 +86,7 @@ public class SolveInDiffSystems implements Initializable {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/system-converter.fxml"));
         Stage stage = (Stage) menu.getScene().getWindow();
         Parent root = loaderNextScene.load();
-        Scene scene = new Scene(root, 700, 700);
+        Scene scene = sceneCreator(root, stage);
         stage.setScene(scene);
     }
 
@@ -95,7 +95,7 @@ public class SolveInDiffSystems implements Initializable {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/solve-expression.fxml"));
         Stage stage = (Stage) menu.getScene().getWindow();
         Parent root = loaderNextScene.load();
-        Scene scene = new Scene(root, 700, 700);
+        Scene scene = sceneCreator(root, stage);
         stage.setScene(scene);
     }
 
@@ -104,7 +104,7 @@ public class SolveInDiffSystems implements Initializable {
         FXMLLoader loaderNextScene = new FXMLLoader(this.getClass().getResource("/roman-converter.fxml"));
         Stage stage = (Stage) menu.getScene().getWindow();
         Parent root = loaderNextScene.load();
-        Scene scene = new Scene(root, 700, 700);
+        Scene scene = sceneCreator(root, stage);
         stage.setScene(scene);
     }
 }

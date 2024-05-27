@@ -44,11 +44,11 @@ public class CheckerInput {
                 expressionBySymbols[i] = '~';
             }
         }
-        String exp = "";
+        StringBuilder exp = new StringBuilder();
         for (char sym : expressionBySymbols) {
-            exp += sym;
+            exp.append(sym);
         }
-        return exp;
+        return exp.toString();
 
     }
 

@@ -26,8 +26,8 @@ public class ConverterRomanSystem {
                 //Меняется значение в созданном массиве.
             }
         }
-        for (int i = 0; i < arrRomanToArab.length; i++) { // Итерируем последнюю версию массива с вычитанием
-            romanToArab = romanToArab + arrRomanToArab[i]; //Чтобы сложить все цифры в массиве
+        for (int j : arrRomanToArab) { // Итерируем последнюю версию массива с вычитанием
+            romanToArab = romanToArab + j; //Чтобы сложить все цифры в массиве
         }
         return romanToArab;
     }
