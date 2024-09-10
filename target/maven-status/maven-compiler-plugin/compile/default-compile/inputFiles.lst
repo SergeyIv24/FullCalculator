@@ -1,14 +1,18 @@
-C:\Учеба\Java 2023 - 2024\Задачи\FullCalculator\src\main\java\my\project\fullCalculator\calculators\CheckerInput.java
-C:\Учеба\Java 2023 - 2024\Задачи\FullCalculator\src\main\java\my\project\fullCalculator\calculators\Calculator.java
-C:\Учеба\Java 2023 - 2024\Задачи\FullCalculator\src\main\java\my\project\fullCalculator\Main.java
-C:\Учеба\Java 2023 - 2024\Задачи\FullCalculator\src\main\java\my\project\fullCalculator\Manager.java
-C:\Учеба\Java 2023 - 2024\Задачи\FullCalculator\src\main\java\my\project\fullCalculator\GUI\CalculatorApp.java
-C:\Учеба\Java 2023 - 2024\Задачи\FullCalculator\src\main\java\module-info.java
-C:\Учеба\Java 2023 - 2024\Задачи\FullCalculator\src\main\java\my\project\fullCalculator\calculators\ConvertToDifferentSystem.java
-C:\Учеба\Java 2023 - 2024\Задачи\FullCalculator\src\main\java\my\project\fullCalculator\exception\UserInoutException.java
-C:\Учеба\Java 2023 - 2024\Задачи\FullCalculator\src\main\java\my\project\fullCalculator\calculators\Stack.java
-C:\Учеба\Java 2023 - 2024\Задачи\FullCalculator\src\main\java\my\project\fullCalculator\GUI\ControllerMenu.java
-C:\Учеба\Java 2023 - 2024\Задачи\FullCalculator\src\main\java\my\project\fullCalculator\GUI\ControllerCalc.java
-C:\Учеба\Java 2023 - 2024\Задачи\FullCalculator\src\main\java\my\project\fullCalculator\calculators\ConverterRomanSystem.java
-C:\Учеба\Java 2023 - 2024\Задачи\FullCalculator\src\main\java\my\project\fullCalculator\GUI\numbersId.java
-C:\Учеба\Java 2023 - 2024\Задачи\FullCalculator\src\main\java\my\project\fullCalculator\calculators\OrdinaryCalculator.java
+C:\study\Java\tasks\FullCalculator\src\main\java\my\project\fullCalculator\calculators\ConverterRomanSystem.java
+C:\study\Java\tasks\FullCalculator\src\main\java\my\project\fullCalculator\consoleGUI\Main.java
+C:\study\Java\tasks\FullCalculator\src\main\java\my\project\fullCalculator\calculators\OrdinaryCalculator.java
+C:\study\Java\tasks\FullCalculator\src\main\java\my\project\fullCalculator\GUI\controllers\SettableWindowSize.java
+C:\study\Java\tasks\FullCalculator\src\main\java\my\project\fullCalculator\GUI\Constance.java
+C:\study\Java\tasks\FullCalculator\src\main\java\my\project\fullCalculator\calculators\Stack.java
+C:\study\Java\tasks\FullCalculator\src\main\java\my\project\fullCalculator\calculators\CheckerInput.java
+C:\study\Java\tasks\FullCalculator\src\main\java\my\project\fullCalculator\calculators\ConvertToDifferentSystem.java
+C:\study\Java\tasks\FullCalculator\src\main\java\my\project\fullCalculator\GUI\controllers\ControllerCalc.java
+C:\study\Java\tasks\FullCalculator\src\main\java\my\project\fullCalculator\GUI\controllers\RomanConverterController.java
+C:\study\Java\tasks\FullCalculator\src\main\java\my\project\fullCalculator\GUI\controllers\SystemConverterController.java
+C:\study\Java\tasks\FullCalculator\src\main\java\my\project\fullCalculator\exception\UserInoutException.java
+C:\study\Java\tasks\FullCalculator\src\main\java\my\project\fullCalculator\GUI\controllers\ControllerMenu.java
+C:\study\Java\tasks\FullCalculator\src\main\java\my\project\fullCalculator\consoleGUI\Manager.java
+C:\study\Java\tasks\FullCalculator\src\main\java\my\project\fullCalculator\CalculatorApp.java
+C:\study\Java\tasks\FullCalculator\src\main\java\my\project\fullCalculator\calculators\Calculator.java
+C:\study\Java\tasks\FullCalculator\src\main\java\my\project\fullCalculator\GUI\controllers\SolveInDiffSystems.java
+C:\study\Java\tasks\FullCalculator\src\main\java\module-info.java

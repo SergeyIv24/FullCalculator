@@ -207,7 +207,6 @@ public class ControllerCalc implements Initializable, SettableWindowSize {
         Scene scene = sceneCreator(root, stage);
         stage.setScene(scene);
     }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Image iconMenu =
